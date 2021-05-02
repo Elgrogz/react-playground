@@ -1,3 +1,23 @@
+Hierarchy:
+- DateCalculator
+  - [ ] End of 180 period input date
+  - [ ] Trip Inputs
+  - [ ] Add another trip button
+  - [ ] Remove trip button
+  - [ ] Calculate Button
+  - [ ] Result output
+
+DateCalculator State:
+  - [ ] End of 180 days date
+  - [ ] Start of 180 days date
+  - [ ] Array of trips
+    - [ ] Trip start date
+    - [ ] Trip end date
+  - 
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

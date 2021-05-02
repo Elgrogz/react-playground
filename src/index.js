@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import DateCalculator from './dateCalculator';
 import reportWebVitals from './reportWebVitals';
+
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DateCalculator />
   </React.StrictMode>,
   document.getElementById('root')
 );
