@@ -4,9 +4,6 @@ import './index.css';
 import DateCalculator from './dateCalculator';
 import reportWebVitals from './reportWebVitals';
 
-
-
-
 ReactDOM.render(
   <React.StrictMode>
     <DateCalculator />
