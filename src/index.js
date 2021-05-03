@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import DateCalculator from './dateCalculator';
+import DateCalculator from './components/dateCalculator';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
