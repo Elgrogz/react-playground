@@ -1,5 +1,6 @@
 import React from 'react';
 import DatePeriod from './datePeriod';
+import Trip from './trip';
 
 class DateCalculator extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class DateCalculator extends React.Component {
     this.state = {
       endOfPeriodDate: null,
       startOfPeriodDate: null,
+      trips: [null]
     };
   }
 
@@ -25,6 +27,27 @@ class DateCalculator extends React.Component {
     });
   }
 
+  // handleStartDate = (event) => {
+  //   const date = event.target.value;
+  //   this.setState({ 
+  //     endOfPeriodDate: new Date(date),
+  //   });
+  // }
+
+  handleTripSubmit = date => (event) => {
+    console.log(event);
+    console.log(date);
+    event.preventDefault();
+    const dateArray = [
+      new Date().setDate(date.startDate.toLocaleDateString()), 
+      new Date().setDate(date.endDate.toLocaleDateString())
+    ]
+    this.setState({
+      trips: this.state.trips.push(dateArray)
+    });
+    console.log(this.state.trips)
+  }
+
   render() {
    return (
     <div className="App">
@@ -35,7 +58,8 @@ class DateCalculator extends React.Component {
           submitHandler={this.handleDatePeriodSubmit}
         />
         <p>.</p>
-        <AddTrip />
+        <Trip 
+          submitHandler={this.handleTripSubmit}/>
         <p>Start trip date ranges here</p>
 
         <p>Output here</p>
