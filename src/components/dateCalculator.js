@@ -8,7 +8,8 @@ class DateCalculator extends React.Component {
     this.state = {
       endOfPeriodDate: null,
       startOfPeriodDate: null,
-      trips: [null]
+      trips: {"1": {start_date: null, end_date: null} }, // holds data for each trip  
+      trip_ids: ["1"], // determines ordering of trips  
     };
   }
 
@@ -27,28 +28,47 @@ class DateCalculator extends React.Component {
     });
   }
 
-  // handleStartDate = (event) => {
+  // handleStartDateChange = (event) => {
   //   const date = event.target.value;
   //   this.setState({ 
   //     endOfPeriodDate: new Date(date),
   //   });
   // }
 
-  handleTripSubmit = date => (event) => {
-    console.log(event);
-    console.log(date);
-    event.preventDefault();
-    const dateArray = [
-      new Date().setDate(date.startDate.toLocaleDateString()), 
-      new Date().setDate(date.endDate.toLocaleDateString())
-    ]
-    this.setState({
-      trips: this.state.trips.push(dateArray)
-    });
-    console.log(this.state.trips)
+  // handleEndDateChange = (event) => {
+  //   console.log(event.target.value)
+  //   this.setState({ 
+  //     startOfPeriodDate: new Date()
+  //   });
+  // }
+
+  // handleTripSubmit = (event) => {
+  //   console.log(event.target.value)
+  //   this.setState({ 
+  //     startOfPeriodDate: new Date()
+  //   });
+  // }
+
+  handleStartDateChange = (trip_id, date) => {  
+    // update the start date of the trip corresponding to trip_id  
+  }  
+  
+  handleEndDateChange = (trip_id, date) => {  
+    // update the end date of the trip corresponding to trip_id  
+  }  
+  
+  addNewRow = () => {  
+    // push a new item to this.state.trip_ids with a random id  
+    // add a blank trip to this.state.trips with that trip_id just generated  
+  }  
+  
+  calculation = () => {  
+    return 123 // some calculation involving this.state.trips  
   }
 
   render() {
+    {console.log("trip ids:" + this.state.trip_ids)}
+    {console.log("trips: " + this.state.trips)}
    return (
     <div className="App">
       <header className="App-header">
@@ -58,8 +78,21 @@ class DateCalculator extends React.Component {
           submitHandler={this.handleDatePeriodSubmit}
         />
         <p>.</p>
-        <Trip 
-          submitHandler={this.handleTripSubmit}/>
+        <div>  
+          {this.state.trip_ids.map((trip_id) => (  
+            console.log("specific id: " + trip_id),
+            <Trip 
+              startDate={this.state.trips[trip_id].startDate}  
+              endDate={this.state.trips[trip_id].endDate}  
+              onStartDateChange={(date) => this.handleStartDateChange(trip_id, date)}  
+              onEndDateChange={(date) => this.handleEndDateChange(trip_id, date)}  
+            />
+          )
+          <AddNewRowButton onClick={this.addNewRow} />  
+          {this.calculation()}  
+          )};
+        </div>
+
         <p>Start trip date ranges here</p>
 
         <p>Output here</p>
