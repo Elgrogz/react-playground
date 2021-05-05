@@ -8,9 +8,11 @@ class DateCalculator extends React.Component {
     this.state = {
       endOfPeriodDate: null,
       startOfPeriodDate: null,
-      trips: [null]
+      trips: null
     };
   }
+
+  // lodash
 
   handleDatePeriodChange = (event) => {
     const date = event.target.value;
@@ -27,6 +29,8 @@ class DateCalculator extends React.Component {
     });
   }
 
+  //date libraries: moment OR date-fns
+
   // handleStartDate = (event) => {
   //   const date = event.target.value;
   //   this.setState({ 
@@ -34,18 +38,26 @@ class DateCalculator extends React.Component {
   //   });
   // }
 
-  handleTripSubmit = date => (event) => {
-    console.log(event);
-    console.log(date);
-    event.preventDefault();
-    const dateArray = [
-      new Date().setDate(date.startDate.toLocaleDateString()), 
-      new Date().setDate(date.endDate.toLocaleDateString())
-    ]
-    this.setState({
-      trips: this.state.trips.push(dateArray)
-    });
-    console.log(this.state.trips)
+  // handleTripSubmit = date => (event) => {
+  //   console.log(event);
+  //   console.log(date);
+  //   event.preventDefault();
+  //   const dateArray = [
+  //     new Date().setDate(date.startDate.toLocaleDateString()), 
+  //     new Date().setDate(date.endDate.toLocaleDateString())
+  //   ]
+  //   this.setState({
+  //     trips: this.state.trips.push(dateArray)
+  //   });
+  //   console.log(this.state.trips)
+  // }
+
+  handleTripStart(date) {
+    console.log(date)
+  }
+
+  handleTripEnd(date) {
+    console.log(date)
   }
 
   render() {
@@ -59,7 +71,10 @@ class DateCalculator extends React.Component {
         />
         <p>.</p>
         <Trip 
-          submitHandler={this.handleTripSubmit}/>
+          // submitHandler={this.handleTripSubmit}/>
+          handleStartDate={this.handleTripStart}
+          handleEndDate={this.handleTripEnd}
+          />
         <p>Start trip date ranges here</p>
 
         <p>Output here</p>
