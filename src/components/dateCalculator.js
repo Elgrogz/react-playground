@@ -30,21 +30,30 @@ class DateCalculator extends React.Component {
     });
   }
 
-  handleStartDateChange = (trip_id, date) => {  
-    console.log("start date change")
-    // update the start date of the trip corresponding to trip_id  
+  handleStartDateChange = (trip, event) => {  
+    const idToUpdate = this.state.trips.indexOf(trip);
+    let trips = [...this.state.trips];
+    let tempTrip = {...this.state.trips[idToUpdate]}
+    tempTrip.startDate = event.target.value;
+    trips[idToUpdate] = tempTrip;
+    this.setState({trips: trips});
   }  
   
-  handleEndDateChange = (trip_id, date) => {  
-    console.log("end date change")
-    // update the end date of the trip corresponding to trip_id  
+  handleEndDateChange = (trip, event) => {  
+    const idToUpdate = this.state.trips.indexOf(trip);
+    let trips = [...this.state.trips];
+    let tempTrip = {...this.state.trips[idToUpdate]}
+    tempTrip.endDate = event.target.value;
+    trips[idToUpdate] = tempTrip;
+    this.setState({trips: trips});
   }  
   
   addNewRow = (event) => {  
     console.log(event.target.value)
     event.preventDefault();
-    // push a new item to this.state.trip_ids with a random id  
-    // add a blank trip to this.state.trips with that trip_id just generated  
+    let trips = [...this.state.trips];
+    trips.push(new TripData());
+    this.setState({trips: trips})
   }  
   
   calculation = () => {  
@@ -63,14 +72,13 @@ class DateCalculator extends React.Component {
         <div>  
           {this.state.trips.map((trip) => (  
             <Trip 
-              // startDate={this.state.trips[trip_id].startDate}  
-              // endDate={this.state.trips[trip_id].endDate} 
-              key={trip.id} 
-              onStartDateChange={(date) => this.handleStartDateChange(trip, date)}  
-              onEndDateChange={(date) => this.handleEndDateChange(trip, date)}  
-              onTripSubmit={this.addNewRow}
+            // startDate={this.state.trips[trip_id].startDate}  
+            // endDate={this.state.trips[trip_id].endDate} 
+            key={trip.id} 
+            onStartDateChange={(date) => this.handleStartDateChange(trip, date)}  
+            onEndDateChange={(date) => this.handleEndDateChange(trip, date)}  
+            onTripSubmit={this.addNewRow}
             >
-             {/* {console.log(trip.key)} */}
             </Trip>         
           ))}
         </div>

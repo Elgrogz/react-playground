@@ -3,5 +3,7 @@ export default class TripData {
     this.id = Date.now().toString();
     this.startDate = null
     this.endDate = null
+
+    console.log('created!')
   }
 }
