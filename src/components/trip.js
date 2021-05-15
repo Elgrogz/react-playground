@@ -1,47 +1,23 @@
 import React from 'react';
 
 class Trip extends React.Component { 
-  constructor(props) {
-    super(props)
-    this.state = {  
-      startDate: null,
-      endDate: null
-    }
-  }
-
-  // handleStartDate = (event) => {
-  //   const date = event.target.value;
-  //   this.setState({ 
-  //     startDate: new Date(date),
-  //   });
-  // }
-
-  // handleEndDate = (event) => {
-  //   const date = event.target.value;
-  //   this.setState({ 
-  //     endDate: new Date(date),
-  //   });
-  // }
-
   render() {
     return (
       <div>
-        <form 
-          // onSubmit={this.props.submitHandler(this.state)}
-        >
+        <form>
         <label>
             Start date of Trip: 
             <input type="date" 
-              onChange={this.onStartDateChange} 
+              onChange={this.props.onStartDateChange} 
             />
           </label>
           <label>
             End date of Trip: 
             <input type="date" 
-              onChange={this.onEndDateChange} 
+              onChange={this.props.onEndDateChange} 
             />
           </label>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Add New Trip" onClick={this.props.onTripSubmit}/>
         </form>
       </div>
     )

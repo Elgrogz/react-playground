@@ -1,20 +1,18 @@
 import React from 'react';
 import DatePeriod from './datePeriod';
 import Trip from './trip';
-import AddNewTripButton from './addNewTripButton';
+import TripData from '../models/tripData';
 
 class DateCalculator extends React.Component {
   constructor(props) {
     super(props);
 
-    const initialId = Date.now().toString();
-    console.log(initialId)
+    const initialTripData = new TripData();
 
     this.state = {
       endOfPeriodDate: null,
       startOfPeriodDate: null,
-      trips: { initialId:{"startDate": new Date(), "endDate": new Date()}}, // holds data for each trip  
-      trip_ids: [initialId], // determines ordering of trips  
+      trips: [initialTripData],
     };
   }
 
@@ -33,15 +31,17 @@ class DateCalculator extends React.Component {
   }
 
   handleStartDateChange = (trip_id, date) => {  
+    console.log("start date change")
     // update the start date of the trip corresponding to trip_id  
   }  
   
   handleEndDateChange = (trip_id, date) => {  
+    console.log("end date change")
     // update the end date of the trip corresponding to trip_id  
   }  
   
   addNewRow = (event) => {  
-    // console.log(event.target.value)
+    console.log(event.target.value)
     event.preventDefault();
     // push a new item to this.state.trip_ids with a random id  
     // add a blank trip to this.state.trips with that trip_id just generated  
@@ -61,23 +61,21 @@ class DateCalculator extends React.Component {
           submitHandler={this.handleDatePeriodSubmit}
         />
         <div>  
-          {this.state.trip_ids.map((trip_id) => (  
-            <div>
-            {console.log("specific trip: " + this.state.trips[trip_id])}
-            {console.log("trips: " + this.state.trips)}
-            {console.log("trip_ids: " + this.state.trip_ids)}
-            {console.log("trip found by trip id: " + this.state.trips[trip_id])}
+          {this.state.trips.map((trip) => (  
             <Trip 
               // startDate={this.state.trips[trip_id].startDate}  
-              // endDate={this.state.trips[trip_id].endDate}  
-              onStartDateChange={(date) => this.handleStartDateChange(trip_id, date)}  
-              onEndDateChange={(date) => this.handleEndDateChange(trip_id, date)}  
-            />         
-            <AddNewTripButton onClick={this.addNewRow} />  
-          {this.calculation()}  
-          </div>
+              // endDate={this.state.trips[trip_id].endDate} 
+              key={trip.id} 
+              onStartDateChange={(date) => this.handleStartDateChange(trip, date)}  
+              onEndDateChange={(date) => this.handleEndDateChange(trip, date)}  
+              onTripSubmit={this.addNewRow}
+            >
+             {/* {console.log(trip.key)} */}
+            </Trip>         
           ))}
         </div>
+
+        {this.calculation()} 
 
         <p>Start trip date ranges here</p>
 
@@ -89,3 +87,7 @@ class DateCalculator extends React.Component {
 }
 
 export default DateCalculator;
+
+
+// const trips = []
+// const trip1 = { "key": Date.now().toString(), "startDate": nil, "endDate": nil }

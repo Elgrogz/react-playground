@@ -17,6 +17,70 @@ DateCalculator State:
 
 
 
+-   lodash for array management (deleting arrays, updating specific elements of an array in an immutable way)
+-   moment/date-fns for datetime handling
+-   Elm - purely functional language to build reactive JS apps, similar to Redux
+
+Here's how I might approach an app where you initially have one row with two date inputs, an "add new row" button, and when you change the date inputs the calculation changes automatically:  
+
+-   The parent component handles all state
+-   We keep track of a hash  **and**  a list for trips. The hash holds the data about the trips, the list specifies the ordering of the trips
+-   The hash looks like e.g.  `{ "trip1": {start_date: A, end_date: B}, "trip2": {start_date: C, end_date: D}}`
+-   i.e. it's a hash where the keys are the trip id and the values are a hash of start and end dates
+-   The list looks like e.g.  `["trip1", "trip2"]`
+-   i.e. it's the trip ids in a specific order
+-   We have to generate trip ids to keep track of which trip we're changing (can use random strings)
+
+That'd look something like:  
+
+```
+class MyComponent extends React.Component {  
+  state = {  
+    trips: {"initial": {start_date: undefined, end_date: undefined} }, // holds data for each trip  
+    trip_ids: ["initial"], // determines ordering of trips  
+  }  handleStartDateChange = (trip_id, date) => {  
+    // update the start date of the trip corresponding to trip_id  
+  }  handleEndDateChange = (trip_id, date) => {  
+    // update the end date of the trip corresponding to trip_id  
+  }  addNewRow = () => {  
+    // push a new item to this.state.trip_ids with a random id  
+    // add a blank trip to this.state.trips with that trip_id just generated  
+  }  calculation = () => {  
+    return 123 // some calculation involving this.state.trips  
+  }  render() {  
+    return (  
+      <div>  
+        {this.state.trip_ids.map((trip_id) => (  
+          <Trip  
+            startDate={this.state.trips[trip_id].startDate}  
+            endDate={this.state.trips[trip_id].endDate}  
+            onStartDateChange={(date) => this.handleStartDateChange(trip_id, date)}  
+            onEndDateChange={(date) => this.handleEndDateChange(trip_id, date)}  
+          />  
+        ))}  
+        <AddNewRowButton onClick={this.addNewRow} />  
+        {this.calculation()}  
+      </div>  
+    )  
+  }  
+}
+```
+
+It's actually a bit trickier than I thought
+
+also  `Trip`  now takes  `startDate`  and  `endDate`  making a it a fully  [controlled component](https://reactjs.org/docs/forms.html#controlled-components)
+
+A JavaScript library for building user interfaces (11 kB)
+
+[https://reactjs.org/docs/forms.html#controlled-components](https://reactjs.org/docs/forms.html#controlled-components "Forms – React")
+
+The trickiness comes because we want to keep track of the order of trips - a common trick to do that is to split up the data into the attributes and the ordering (we do this in the Banking app)
+
+a hash is easy to update, but it has no inherent ordering. an array has ordering but is tricky to update
+
+
+
+
 
 # Getting Started with Create React App
 
