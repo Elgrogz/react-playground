@@ -7,7 +7,7 @@ class DateCalculator extends React.Component {
   constructor(props) {
     super(props);
 
-    const initialTripData = new TripData();
+    const initialTripData = new TripData(true);
 
     this.state = {
       endOfPeriodDate: null,
@@ -72,20 +72,17 @@ class DateCalculator extends React.Component {
         <div>  
           {this.state.trips.map((trip) => (  
             <Trip 
-            // startDate={this.state.trips[trip_id].startDate}  
-            // endDate={this.state.trips[trip_id].endDate} 
-            key={trip.id} 
-            onStartDateChange={(date) => this.handleStartDateChange(trip, date)}  
-            onEndDateChange={(date) => this.handleEndDateChange(trip, date)}  
-            onTripSubmit={this.addNewRow}
+              key={trip.id} 
+              onStartDateChange={(date) => this.handleStartDateChange(trip, date)}  
+              onEndDateChange={(date) => this.handleEndDateChange(trip, date)}  
+              onTripSubmit={this.addNewRow}
+              isFirstElement={trip.isFirstTrip}
             >
             </Trip>         
           ))}
         </div>
 
         {this.calculation()} 
-
-        <p>Start trip date ranges here</p>
 
         <p>Output here</p>
       </header>

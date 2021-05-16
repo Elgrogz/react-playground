@@ -2,6 +2,11 @@ import React from 'react';
 
 class Trip extends React.Component { 
   render() {
+    let removeTripButton;
+    if (!this.props.isFirstElement) {
+      removeTripButton = <input type="submit" value="Remove Trip" onClick={this.props.onTripSubmit}/>;
+    }
+
     return (
       <div>
         <form>
@@ -18,6 +23,7 @@ class Trip extends React.Component {
             />
           </label>
           <input type="submit" value="Add New Trip" onClick={this.props.onTripSubmit}/>
+          {removeTripButton}
         </form>
       </div>
     )
