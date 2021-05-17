@@ -4,7 +4,5 @@ export default class TripData {
     this.startDate = null
     this.endDate = null
     this.isFirstTrip = isFirstTrip;
-
-    console.log('created!')
   }
 }

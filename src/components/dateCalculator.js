@@ -1,98 +1,115 @@
+import addDays from 'date-fns/addDays';
+
 import React from 'react';
 import DatePeriod from './datePeriod';
 import Trip from './trip';
 import TripData from '../models/tripData';
+import CalculateButton from './calculateButton';
 
 class DateCalculator extends React.Component {
   constructor(props) {
     super(props);
 
     const initialTripData = new TripData(true);
+    const todaysDate = new Date();
 
     this.state = {
-      endOfPeriodDate: null,
-      startOfPeriodDate: null,
+      endOfPeriodDate: todaysDate,
+      startOfPeriodDate: addDays(todaysDate, -179),
       trips: [initialTripData],
+      calculatedDates: null,
     };
   }
 
   handleDatePeriodChange = (event) => {
-    const date = event.target.value;
+    const date = new Date(event.target.value);
     this.setState({ 
-      endOfPeriodDate: new Date(date),
-    });
-  }
-
-  handleDatePeriodSubmit = (event) => {
-    event.preventDefault();
-    this.setState({ 
-      startOfPeriodDate: new Date (new Date().setDate(this.state.endOfPeriodDate.getDate()-179))
+      endOfPeriodDate: date,
+      startOfPeriodDate: addDays(date, -179)
     });
   }
 
   handleStartDateChange = (trip, event) => {  
-    const idToUpdate = this.state.trips.indexOf(trip);
+    const indexToUpdate = this.state.trips.indexOf(trip);
     let trips = [...this.state.trips];
-    let tempTrip = {...this.state.trips[idToUpdate]}
+    let tempTrip = {...this.state.trips[indexToUpdate]}
     tempTrip.startDate = event.target.value;
-    trips[idToUpdate] = tempTrip;
+    trips[indexToUpdate] = tempTrip;
     this.setState({trips: trips});
   }  
   
   handleEndDateChange = (trip, event) => {  
-    const idToUpdate = this.state.trips.indexOf(trip);
+    const indexToUpdate = this.state.trips.indexOf(trip);
     let trips = [...this.state.trips];
-    let tempTrip = {...this.state.trips[idToUpdate]}
+    let tempTrip = {...this.state.trips[indexToUpdate]}
     tempTrip.endDate = event.target.value;
-    trips[idToUpdate] = tempTrip;
+    trips[indexToUpdate] = tempTrip;
     this.setState({trips: trips});
   }  
   
-  addNewRow = (event) => {  
+  addTrip = (event) => {  
     console.log(event.target.value)
     event.preventDefault();
     let trips = [...this.state.trips];
     trips.push(new TripData());
     this.setState({trips: trips})
   }  
+
+  removeTrip = (trip, event) => {  
+    event.preventDefault();
+    const indexToUpdate = this.state.trips.indexOf(trip);
+    let trips = [...this.state.trips];
+    trips.splice(indexToUpdate, 1)
+    this.setState({trips: trips})
+  } 
   
   calculation = () => {  
-    // return 123 // some calculation involving this.state.trips  
+    this.setState({calculatedDates: "helloooooo!"})
+    return 123 // some calculation involving this.state.trips  
   }
 
   render() {
-   return (
-    <div className="App">
-      <header className="App-header">
-        <DatePeriod
-          data={this.state}
-          clickHandler={this.handleDatePeriodChange} 
-          submitHandler={this.handleDatePeriodSubmit}
-        />
-        <div>  
-          {this.state.trips.map((trip) => (  
-            <Trip 
-              key={trip.id} 
-              onStartDateChange={(date) => this.handleStartDateChange(trip, date)}  
-              onEndDateChange={(date) => this.handleEndDateChange(trip, date)}  
-              onTripSubmit={this.addNewRow}
-              isFirstElement={trip.isFirstTrip}
-            >
-            </Trip>         
-          ))}
-        </div>
+    let dateWarning;
+    if (this.state.calculatedDates) {
+      dateWarning = <p>{this.state.calculatedDates}</p>
+    }
 
-        {this.calculation()} 
+    return (
+      <div className="App">
+        <header className="App-header">
+          <DatePeriod
+            data={this.state}
+            clickHandler={this.handleDatePeriodChange} 
+            // submitHandler={this.handleDatePeriodSubmit}
+          />
+          <div>  
+            {this.state.trips.map((trip) => (  
+              <Trip 
+                key={trip.id} 
+                handleStartDateChange={(event) => this.handleStartDateChange(trip, event)}  
+                handleEndDateChange={(event) => this.handleEndDateChange(trip, event)}  
+                handleTripAdd={this.addTrip}
+                handleTripRemove={(event) => this.removeTrip(trip, event)}
+                isFirstElement={trip.isFirstTrip}
+              >
+              </Trip>         
+            ))}
+          </div>
 
-        <p>Output here</p>
-      </header>
-    </div>
-  );
-}
+          <CalculateButton handleCalculation={this.calculation} />
+
+          <p>Output here</p>
+          
+          {dateWarning} 
+
+        </header>
+      </div>
+    );
+  }
 }
 
 export default DateCalculator;
 
 
-// const trips = []
-// const trip1 = { "key": Date.now().toString(), "startDate": nil, "endDate": nil }
+// handleTripRemove={(date) => this.removeTrip(trip, date)} WORKS WITH AN EVENT
+// handleTripRemove={this.removeTrip(trip)} DOESN'T WORK

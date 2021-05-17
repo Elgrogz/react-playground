@@ -15,6 +15,10 @@ DateCalculator State:
     - [ ] Trip end date
   - 
 
+  TODOS
+
+  - [ ] Have one add trip button?
+
 
 
 -   lodash for array management (deleting arrays, updating specific elements of an array in an immutable way)

@@ -1,23 +1,18 @@
 import React from 'react';
 
-class DatePeriod extends React.Component { 
-  render() {
+export default function DatePeriod(props) { 
     return (
       <div>
-        <p>End of 180 day travel period: { this.props.data.endOfPeriodDate ? this.props.data.endOfPeriodDate.toLocaleDateString() : "Not yet selected" }</p>
-        <p>Start of 180 day travel period: { this.props.data.startOfPeriodDate ? this.props.data.startOfPeriodDate.toLocaleDateString() : "Not yet selected" }</p>
-        <form onSubmit={this.props.submitHandler}>
+        <p>End of 180 day travel period: { props.data.endOfPeriodDate ? props.data.endOfPeriodDate.toLocaleDateString() : "Not yet selected" }</p>
+        <p>Start of 180 day travel period: { props.data.startOfPeriodDate ? props.data.startOfPeriodDate.toLocaleDateString() : "Not yet selected" }</p>
+        <form onSubmit={props.submitHandler}>
           <label>
             End of Period Date: 
             <input type="date" 
-              onChange={this.props.clickHandler} 
+              onChange={props.clickHandler} 
             />
           </label>
-          <input type="submit" value="Submit" />
         </form>
       </div>
     )
-  }
 }
-
-export default DatePeriod;
