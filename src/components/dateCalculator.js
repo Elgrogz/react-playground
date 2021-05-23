@@ -1,4 +1,4 @@
-import {addDays, isAfter, isBefore, isEqual, parseISO} from 'date-fns'
+import {addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays} from 'date-fns'
 
 import React from 'react';
 import DatePeriod from './datePeriod';
@@ -17,6 +17,7 @@ class DateCalculator extends React.Component {
       endOfPeriodDate: todaysDate,
       startOfPeriodDate: addDays(todaysDate, -179),
       trips: [initialTripData],
+      totalDaysInEu: 0,
       canTravelToEu: null,
     };
   }
@@ -63,6 +64,7 @@ class DateCalculator extends React.Component {
   } 
   
   calculation = () => {  
+    console.log(this.state.totalDaysInEu)
     this.setState({canTravelToEu: "helloooooo!"})
     const overlappingTrips = this.state.trips.map((trip) => {
       let tripObject = Object.assign({}, trip)
@@ -79,19 +81,20 @@ class DateCalculator extends React.Component {
     })
 
     const filteredTrips = overlappingTrips.filter((trip) => {
-      console.log(trip)
-      if ((isAfter(trip.startDate, this.state.startOfPeriodDate) || isEqual(trip.startDate, this.state.startOfPeriodDate))
-          && (isBefore(trip.endDate, this.state.endOfPeriodDate) || isEqual(trip.endDate, this.state.endOfPeriodDate))) {
-        return trip
-      }
+      return trip ? (
+             (isAfter(trip.startDate, this.state.startOfPeriodDate) || isEqual(trip.startDate, this.state.startOfPeriodDate))
+          && (isBefore(trip.endDate, this.state.endOfPeriodDate) || isEqual(trip.endDate, this.state.endOfPeriodDate))
+          ) : null;
     })
 
-    console.log(filteredTrips)
+    const daysInEu = filteredTrips.reduce((acc, trip) => {
+      return acc + differenceInDays(trip.endDate, trip.startDate) + 1
+    }, 0)
 
-    // trips.forEach((trip) => {
-    //   console.log(trip.startDate)
-    //   console.log(trip.endDate)
-    // })
+    if (daysInEu > 0) {
+      console.log("found some days")
+      this.setState({totalDaysInEu: daysInEu})
+    }
 
     // check dates are valid - 
     //      get each trip
@@ -104,6 +107,11 @@ class DateCalculator extends React.Component {
   }
 
   render() {
+    let totalNumberOfDaysInEu;
+    if (this.state.totalDaysInEu > 0) {
+      totalNumberOfDaysInEu = <p>{this.state.totalDaysInEu}</p>
+    }
+    
     let dateWarning;
     if (this.state.canTravelToEu) {
       dateWarning = <p>{this.state.canTravelToEu}</p>
@@ -133,7 +141,7 @@ class DateCalculator extends React.Component {
 
           <CalculateButton handleCalculation={this.calculation} />
 
-          <p>Output here</p>
+          {totalNumberOfDaysInEu}
           
           {dateWarning} 
 
