@@ -18,7 +18,6 @@ class DateCalculator extends React.Component {
       startOfPeriodDate: addDays(todaysDate, -179),
       trips: [initialTripData],
       totalDaysInEu: 0,
-      canTravelToEu: null,
     };
   }
 
@@ -64,8 +63,6 @@ class DateCalculator extends React.Component {
   } 
   
   calculation = () => {  
-    console.log(this.state.totalDaysInEu)
-    this.setState({canTravelToEu: "helloooooo!"})
     const overlappingTrips = this.state.trips.map((trip) => {
       let tripObject = Object.assign({}, trip)
 
@@ -91,31 +88,19 @@ class DateCalculator extends React.Component {
       return acc + differenceInDays(trip.endDate, trip.startDate) + 1
     }, 0)
 
-    if (daysInEu > 0) {
-      console.log("found some days")
-      this.setState({totalDaysInEu: daysInEu})
-    }
-
-    // check dates are valid - 
-    //      get each trip
-    //      if the trip start date is before the period start and the trip end is greater than the period start, set the start date to the period start
-    //      if the trip start date is before the period end and the trip is greater than the period end, set the end date to the period end
-    //      filter out trips with start dates after the end date and trips with end dates before the start date
-    //      get the number of each valid trip's length
-    //      total up each trips length and see if it is over 90 days in the 180 day period
-
+    daysInEu > 0 ? this.setState({totalDaysInEu: daysInEu}) : this.setState({totalDaysInEu: 0})
   }
 
   render() {
-    let totalNumberOfDaysInEu;
-    if (this.state.totalDaysInEu > 0) {
-      totalNumberOfDaysInEu = <p>{this.state.totalDaysInEu}</p>
-    }
+    // let totalNumberOfDaysInEu;
+    // if (this.state.totalDaysInEu > 0) {
+    //   totalNumberOfDaysInEu = <p>{this.state.totalDaysInEu}</p>
+    // }
     
     let dateWarning;
-    if (this.state.canTravelToEu) {
-      dateWarning = <p>{this.state.canTravelToEu}</p>
-    }
+    this.state.totalDaysInEu > 90 ? 
+        dateWarning = <p>The user has spent more than 90 days in the EU! Leave now!</p> : 
+        dateWarning = <p>The user has spent less than 90 days in the EU! Stick around!</p> 
 
     return (
       <div className="App">
@@ -141,7 +126,7 @@ class DateCalculator extends React.Component {
 
           <CalculateButton handleCalculation={this.calculation} />
 
-          {totalNumberOfDaysInEu}
+          <p>Days spent in the EU: {this.state.totalDaysInEu}</p>
           
           {dateWarning} 
 
