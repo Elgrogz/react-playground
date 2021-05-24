@@ -1,17 +1,17 @@
-import {addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays} from 'date-fns'
+import {addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays, startOfDay} from 'date-fns'
 
-import React from 'react';
-import DatePeriod from './datePeriod';
-import Trip from './trip';
-import TripData from '../models/tripData';
-import CalculateButton from './calculateButton';
+import React from 'react'
+import DatePeriod from './datePeriod'
+import Trip from './trip'
+import TripData from '../models/tripData'
+import CalculateButton from './calculateButton'
 
 class DateCalculator extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    const initialTripData = new TripData(true);
-    const todaysDate = new Date();
+    const initialTripData = new TripData(true)
+    const todaysDate = startOfDay(new Date())
 
     this.state = {
       endOfPeriodDate: todaysDate,
@@ -22,7 +22,7 @@ class DateCalculator extends React.Component {
   }
 
   handleDatePeriodChange = (event) => {
-    const date = new Date(event.target.value);
+    const date = new Date(event.target.value)
     this.setState({ 
       endOfPeriodDate: date,
       startOfPeriodDate: addDays(date, -179)
@@ -30,34 +30,34 @@ class DateCalculator extends React.Component {
   }
 
   handleStartDateChange = (trip, event) => {  
-    const indexToUpdate = this.state.trips.indexOf(trip);
-    let trips = [...this.state.trips];
+    const indexToUpdate = this.state.trips.indexOf(trip)
+    let trips = [...this.state.trips]
     let tempTrip = {...this.state.trips[indexToUpdate]}
-    tempTrip.startDate = parseISO(event.target.value);
-    trips[indexToUpdate] = tempTrip;
-    this.setState({trips: trips});
+    tempTrip.startDate = parseISO(event.target.value)
+    trips[indexToUpdate] = tempTrip
+    this.setState({trips: trips})
   }  
   
   handleEndDateChange = (trip, event) => {  
-    const indexToUpdate = this.state.trips.indexOf(trip);
-    let trips = [...this.state.trips];
+    const indexToUpdate = this.state.trips.indexOf(trip)
+    let trips = [...this.state.trips]
     let tempTrip = {...this.state.trips[indexToUpdate]}
-    tempTrip.endDate = parseISO(event.target.value);
-    trips[indexToUpdate] = tempTrip;
-    this.setState({trips: trips});
+    tempTrip.endDate = parseISO(event.target.value)
+    trips[indexToUpdate] = tempTrip
+    this.setState({trips: trips})
   }  
   
   addTrip = (event) => {  
-    event.preventDefault();
-    let trips = [...this.state.trips];
-    trips.push(new TripData());
+    event.preventDefault()
+    let trips = [...this.state.trips]
+    trips.push(new TripData())
     this.setState({trips: trips})
   }  
 
   removeTrip = (trip, event) => {  
     event.preventDefault();
-    const indexToUpdate = this.state.trips.indexOf(trip);
-    let trips = [...this.state.trips];
+    const indexToUpdate = this.state.trips.indexOf(trip)
+    let trips = [...this.state.trips]
     trips.splice(indexToUpdate, 1)
     this.setState({trips: trips})
   } 
@@ -81,8 +81,8 @@ class DateCalculator extends React.Component {
       return trip ? (
              (isAfter(trip.startDate, this.state.startOfPeriodDate) || isEqual(trip.startDate, this.state.startOfPeriodDate))
           && (isBefore(trip.endDate, this.state.endOfPeriodDate) || isEqual(trip.endDate, this.state.endOfPeriodDate))
-          ) : null;
-    })
+          ) : null
+    });
 
     const daysInEu = filteredTrips.reduce((acc, trip) => {
       return acc + differenceInDays(trip.endDate, trip.startDate) + 1
@@ -91,12 +91,7 @@ class DateCalculator extends React.Component {
     daysInEu > 0 ? this.setState({totalDaysInEu: daysInEu}) : this.setState({totalDaysInEu: 0})
   }
 
-  render() {
-    // let totalNumberOfDaysInEu;
-    // if (this.state.totalDaysInEu > 0) {
-    //   totalNumberOfDaysInEu = <p>{this.state.totalDaysInEu}</p>
-    // }
-    
+  render() {   
     let dateWarning;
     this.state.totalDaysInEu > 90 ? 
         dateWarning = <p>The user has spent more than 90 days in the EU! Leave now!</p> : 
@@ -108,7 +103,6 @@ class DateCalculator extends React.Component {
           <DatePeriod
             data={this.state}
             clickHandler={this.handleDatePeriodChange} 
-            // submitHandler={this.handleDatePeriodSubmit}
           />
           <div>  
             {this.state.trips.map((trip) => (  
@@ -137,7 +131,3 @@ class DateCalculator extends React.Component {
 }
 
 export default DateCalculator;
-
-
-// handleTripRemove={(date) => this.removeTrip(trip, date)} WORKS WITH AN EVENT
-// handleTripRemove={this.removeTrip(trip)} DOESN'T WORK
