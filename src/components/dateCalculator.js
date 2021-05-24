@@ -10,7 +10,7 @@ class DateCalculator extends React.Component {
   constructor(props) {
     super(props)
 
-    const initialTripData = new TripData(true)
+    const initialTripData = new TripData()
     const todaysDate = startOfDay(new Date())
 
     this.state = {
@@ -32,8 +32,10 @@ class DateCalculator extends React.Component {
   handleStartDateChange = (trip, event) => {  
     const indexToUpdate = this.state.trips.indexOf(trip)
     let trips = [...this.state.trips]
-    let tempTrip = {...this.state.trips[indexToUpdate]}
-    tempTrip.startDate = parseISO(event.target.value)
+    let tempTrip = {
+      ...this.state.trips[indexToUpdate],
+      startDate: parseISO(event.target.value)
+    }
     trips[indexToUpdate] = tempTrip
     this.setState({trips: trips})
   }  
@@ -41,8 +43,10 @@ class DateCalculator extends React.Component {
   handleEndDateChange = (trip, event) => {  
     const indexToUpdate = this.state.trips.indexOf(trip)
     let trips = [...this.state.trips]
-    let tempTrip = {...this.state.trips[indexToUpdate]}
-    tempTrip.endDate = parseISO(event.target.value)
+    let tempTrip = {
+      ...this.state.trips[indexToUpdate],
+      endDate: parseISO(event.target.value)
+    }
     trips[indexToUpdate] = tempTrip
     this.setState({trips: trips})
   }  
@@ -105,14 +109,14 @@ class DateCalculator extends React.Component {
             clickHandler={this.handleDatePeriodChange} 
           />
           <div>  
-            {this.state.trips.map((trip) => (  
+            {this.state.trips.map((trip, index) => (  
               <Trip 
                 key={trip.id} 
                 handleStartDateChange={(event) => this.handleStartDateChange(trip, event)}  
                 handleEndDateChange={(event) => this.handleEndDateChange(trip, event)}  
                 handleTripAdd={this.addTrip}
                 handleTripRemove={(event) => this.removeTrip(trip, event)}
-                isFirstElement={trip.isFirstTrip}
+                isFirstElement={index === 0}
               >
               </Trip>         
             ))}

@@ -18,6 +18,7 @@ DateCalculator State:
   TODOS
 
   - [ ] Have one add trip button?
+  - [ ] tests - enzyme, jest, etc
 
 
 

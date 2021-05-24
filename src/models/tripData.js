@@ -1,8 +1,7 @@
 export default class TripData {
-  constructor(isFirstTrip = false) {
+  constructor() {
     this.id = Date.now().toString();
     this.startDate = null
     this.endDate = null
-    this.isFirstTrip = isFirstTrip;
   }
 }
