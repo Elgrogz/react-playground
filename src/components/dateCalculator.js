@@ -1,4 +1,4 @@
-import {addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays, startOfDay} from 'date-fns'
+import { addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays, startOfDay } from 'date-fns'
 
 import React from 'react'
 import DatePeriod from './datePeriod'
@@ -11,12 +11,14 @@ class DateCalculator extends React.Component {
     super(props)
 
     const initialTripData = new TripData()
+    const initialTripId = Date.now().toString();
     const todaysDate = startOfDay(new Date())
 
     this.state = {
       endOfPeriodDate: todaysDate,
       startOfPeriodDate: addDays(todaysDate, -179),
-      trips: [initialTripData],
+      tripIds: [initialTripId],
+      tripData: { [initialTripId]: initialTripData},
       totalDaysInEu: 0,
     };
   }
@@ -29,41 +31,64 @@ class DateCalculator extends React.Component {
     });
   }
 
-  handleStartDateChange = (trip, event) => {  
-    const indexToUpdate = this.state.trips.indexOf(trip)
-    let trips = [...this.state.trips]
-    let tempTrip = {
-      ...this.state.trips[indexToUpdate],
-      startDate: parseISO(event.target.value)
+  handleStartDateChange = (tripId, event) => {  
+    const trips = {
+      ...this.state.tripData,
+      [tripId]: { ...this.state.tripData[tripId], startDate: parseISO(event.target.value) }
     }
-    trips[indexToUpdate] = tempTrip
-    this.setState({trips: trips})
+    this.setState({ tripData: trips})
+
+    // const indexToUpdate = this.state.trips.indexOf(trip)
+    // let trips = [...this.state.trips]
+    // let tempTrip = {
+    //   ...this.state.trips[indexToUpdate],
+    //   startDate: parseISO(event.target.value)
+    // }
+    // trips[indexToUpdate] = tempTrip
+    // this.setState({trips: trips})
   }  
   
-  handleEndDateChange = (trip, event) => {  
-    const indexToUpdate = this.state.trips.indexOf(trip)
-    let trips = [...this.state.trips]
-    let tempTrip = {
-      ...this.state.trips[indexToUpdate],
-      endDate: parseISO(event.target.value)
+  handleEndDateChange = (tripId, event) => {  
+    const trips = {
+      ...this.state.tripData,
+      [tripId]: { ...this.state.tripData[tripId], endDate: parseISO(event.target.value) }
     }
-    trips[indexToUpdate] = tempTrip
-    this.setState({trips: trips})
+    this.setState({ tripData: trips})
+
+
+    // const indexToUpdate = this.state.trips.indexOf(trip)
+    // let trips = [...this.state.trips]
+    // let tempTrip = {
+    //   ...this.state.trips[indexToUpdate],
+    //   endDate: parseISO(event.target.value)
+    // }
+    // trips[indexToUpdate] = tempTrip
+    // this.setState({trips: trips})
   }  
   
   addTrip = (event) => {  
     event.preventDefault()
-    let trips = [...this.state.trips]
-    trips.push(new TripData())
-    this.setState({trips: trips})
+
+    const newTrip = new TripData();
+    const tripId = Date.now().toString();
+    const newTripIds = [...this.state.tripIds, tripId];
+    const newTrips = { ...this.state.tripData, [tripId]: { newTrip } }
+    this.setState({ tripIds: newTripIds, tripData: newTrips })
+
+    // let trips = [...this.state.trips]
+    // trips.push(new TripData())
+    // this.setState({trips: trips})
   }  
 
-  removeTrip = (trip, event) => {  
+  removeTrip = (tripId, event) => {  
     event.preventDefault();
-    const indexToUpdate = this.state.trips.indexOf(trip)
-    let trips = [...this.state.trips]
-    trips.splice(indexToUpdate, 1)
-    this.setState({trips: trips})
+
+    const newTripIds = [...this.state.tripIds].splice(tripId)
+    const newTrips = delete { ...this.state.tripData[tripId]}
+    // const indexToUpdate = this.state.tripsIds.indexOf(trip)
+    // let trips = [...this.state.trips]
+    // trips.splice(indexToUpdate, 1)
+    // this.setState({trips: trips})
   } 
   
   calculation = () => {  
@@ -109,13 +134,13 @@ class DateCalculator extends React.Component {
             clickHandler={this.handleDatePeriodChange} 
           />
           <div>  
-            {this.state.trips.map((trip, index) => (  
+            {this.state.tripIds.map((tripId, index) => (  
               <Trip 
-                key={trip.id} 
-                handleStartDateChange={(event) => this.handleStartDateChange(trip, event)}  
-                handleEndDateChange={(event) => this.handleEndDateChange(trip, event)}  
+                key={tripId} 
+                handleStartDateChange={(event) => this.handleStartDateChange(tripId, event)}  
+                handleEndDateChange={(event) => this.handleEndDateChange(tripId, event)}  
                 handleTripAdd={this.addTrip}
-                handleTripRemove={(event) => this.removeTrip(trip, event)}
+                handleTripRemove={(event) => this.removeTrip(tripId, event)}
                 isFirstElement={index === 0}
               >
               </Trip>         
