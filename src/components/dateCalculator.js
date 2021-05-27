@@ -1,7 +1,7 @@
 import {addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays, startOfDay} from 'date-fns'
 
-import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 
 import React from 'react'
 import DatePeriod from './datePeriod'
@@ -105,17 +105,15 @@ class DateCalculator extends React.Component {
     dateWarning = <p>The user has spent less than 90 days in the EU! Stick around!</p> 
     
     return (
-      <Jumbotron fluid>
-        <Container class="justify-content-center">
-        <header className="App-header">
+      <Container className="center">
+        <Row className="p-3 center">
           <h1>EU Travel Calculator</h1>
-        </header>
-          <div>  
-          <DatePeriod
-            data={this.state}
-            clickHandler={this.handleDatePeriodChange} 
-            />
-
+        </Row>
+        <Row>
+          <DatePeriod data={this.state} clickHandler={this.handleDatePeriodChange} />
+        </Row>
+        <Row className="p-1 center">
+        <div>  
             {this.state.trips.map((trip, index) => (  
               <Trip 
                 key={trip.id} 
@@ -124,18 +122,17 @@ class DateCalculator extends React.Component {
                 handleTripAdd={this.addTrip}
                 handleTripRemove={(event) => this.removeTrip(trip, event)}
                 isFirstElement={index === 0}
-              >
-              </Trip>         
-            ))}
-          </div>
-
+              />
+              ))
+            }
+        </div>
+        </Row>
+        <Row className="p-5">
           <CalculateButton handleCalculation={this.calculation} />
-
           <p>Days spent in the EU: {this.state.totalDaysInEu}</p>
-          
           {dateWarning} 
-          </Container>
-      </Jumbotron>
+        </Row>       
+      </Container>
     );
   }
 }

@@ -9,7 +9,7 @@ export default function DatePeriod(props) {
     return (
       <Container>
         <Row>
-          <Col sm={3}>
+          <Col>
             <Form onSubmit={props.submitHandler}>
               <Form.Group>
                 <Form.Label>
