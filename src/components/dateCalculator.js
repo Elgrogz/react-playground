@@ -98,17 +98,20 @@ class DateCalculator extends React.Component {
   render() {   
     let dateWarning;
     this.state.totalDaysInEu > 90 ? 
-        dateWarning = <p>The user has spent more than 90 days in the EU! Leave now!</p> : 
-        dateWarning = <p>The user has spent less than 90 days in the EU! Stick around!</p> 
-
+    dateWarning = <p>The user has spent more than 90 days in the EU! Leave now!</p> : 
+    dateWarning = <p>The user has spent less than 90 days in the EU! Stick around!</p> 
+    
     return (
       <div className="App">
         <header className="App-header">
+          <h1>EU Travel Calculator</h1>
+        </header>
+          <div>  
           <DatePeriod
             data={this.state}
             clickHandler={this.handleDatePeriodChange} 
-          />
-          <div>  
+            />
+
             {this.state.trips.map((trip, index) => (  
               <Trip 
                 key={trip.id} 
@@ -128,7 +131,6 @@ class DateCalculator extends React.Component {
           
           {dateWarning} 
 
-        </header>
       </div>
     );
   }
