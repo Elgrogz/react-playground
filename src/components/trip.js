@@ -1,49 +1,29 @@
 import React from 'react';
 
-class Trip extends React.Component { 
-  constructor(props) {
-    super(props)
-    this.state = {  
-      startDate: null,
-      endDate: null
-    }
+export default function Trip(props) { 
+  let removeTripButton;
+  if (!props.isFirstElement) {
+    removeTripButton = <button value="Remove Trip" onClick={props.handleTripRemove}>Remove Trip</button>;
   }
-
-  handleStartDate = (event) => {
-    const date = event.target.value;
-    this.setState({ 
-      startDate: new Date(date),
-    });
-  }
-
-  handleEndDate = (event) => {
-    const date = event.target.value;
-    this.setState({ 
-      endDate: new Date(date),
-    });
-  }
-
-  render() {
-    return (
+  
+  return (
       <div>
-        <form onSubmit={this.props.submitHandler(this.state)}>
+        <form>
         <label>
             Start date of Trip: 
             <input type="date" 
-              onChange={this.handleStartDate} 
+              onChange={props.handleStartDateChange} 
             />
           </label>
           <label>
             End date of Trip: 
             <input type="date" 
-              onChange={this.handleEndDate} 
+              onChange={props.handleEndDateChange} 
             />
           </label>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Add New Trip" onClick={props.handleTripAdd}/>
+          {removeTripButton}
         </form>
       </div>
-    )
-  }
+  )
 }
-
-export default Trip;
