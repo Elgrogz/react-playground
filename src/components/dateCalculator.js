@@ -1,5 +1,8 @@
 import {addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays, startOfDay} from 'date-fns'
 
+import Jumbotron from 'react-bootstrap/Jumbotron'
+import Container from 'react-bootstrap/Container'
+
 import React from 'react'
 import DatePeriod from './datePeriod'
 import Trip from './trip'
@@ -102,7 +105,8 @@ class DateCalculator extends React.Component {
     dateWarning = <p>The user has spent less than 90 days in the EU! Stick around!</p> 
     
     return (
-      <div className="App">
+      <Jumbotron fluid>
+        <Container class="justify-content-center">
         <header className="App-header">
           <h1>EU Travel Calculator</h1>
         </header>
@@ -130,8 +134,8 @@ class DateCalculator extends React.Component {
           <p>Days spent in the EU: {this.state.totalDaysInEu}</p>
           
           {dateWarning} 
-
-      </div>
+          </Container>
+      </Jumbotron>
     );
   }
 }

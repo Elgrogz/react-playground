@@ -1,29 +1,31 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export default function Trip(props) { 
   let removeTripButton;
   if (!props.isFirstElement) {
-    removeTripButton = <button value="Remove Trip" onClick={props.handleTripRemove}>Remove Trip</button>;
+    removeTripButton = <Button variant="warning" onClick={props.handleTripRemove}>Remove Trip</Button>;
   }
   
   return (
       <div>
-        <form>
-        <label>
-            Start date of Trip: 
-            <input type="date" 
-              onChange={props.handleStartDateChange} 
-            />
-          </label>
-          <label>
+        <Form>
+          <Form.Group controlId="tripStartDate">
+            <Form.Label>
+              Start date of Trip: 
+              <Form.Control type="date" onChange={props.handleStartDateChange} />
+            </Form.Label>
+        
+            <Form.Label>
             End date of Trip: 
-            <input type="date" 
-              onChange={props.handleEndDateChange} 
-            />
-          </label>
-          <input type="submit" value="Add New Trip" onClick={props.handleTripAdd}/>
-          {removeTripButton}
-        </form>
+              <Form.Control type="date" onChange={props.handleEndDateChange} />
+            </Form.Label>
+          
+            <Button variant="success" type="submit" onClick={props.handleTripAdd}>Add New Trip</Button>
+            {removeTripButton}
+          </Form.Group>
+        </Form>
       </div>
   )
 }
