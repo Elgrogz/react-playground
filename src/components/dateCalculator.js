@@ -32,7 +32,7 @@ class DateCalculator extends React.Component {
   handleStartDateChange = (trip, event) => {  
     const indexToUpdate = this.state.trips.indexOf(trip)
     let trips = [...this.state.trips]
-    let tempTrip = {
+    const tempTrip = {
       ...this.state.trips[indexToUpdate],
       startDate: parseISO(event.target.value)
     }
@@ -43,7 +43,7 @@ class DateCalculator extends React.Component {
   handleEndDateChange = (trip, event) => {  
     const indexToUpdate = this.state.trips.indexOf(trip)
     let trips = [...this.state.trips]
-    let tempTrip = {
+    const tempTrip = {
       ...this.state.trips[indexToUpdate],
       endDate: parseISO(event.target.value)
     }
