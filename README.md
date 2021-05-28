@@ -30,7 +30,8 @@
   - [ ] Business Logic (jest?)
   - [ ] UI (React Testing Library)
 - [ ] Get CI up and running (github actions)
-- [ ] Deploy (Netlify? AWS?)
+  - [ ] Codecov
+- [ ] Deploy (Netlify? AWS? Github Pages?)
 
 ## Techs to investigate
 
@@ -41,6 +42,7 @@
 - Jest
 - React testing library
 - React Bootstrap
+- Codecov
 
 ## Shane advice
 
