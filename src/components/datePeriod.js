@@ -10,7 +10,7 @@ export default function DatePeriod(props) {
       <Container>
         <Row>
           <Col>
-            <Form onSubmit={props.submitHandler}>
+            <Form className="float-right" onSubmit={props.submitHandler}>
               <Form.Group>
                 <Form.Label>
                   End of Period Date: 
@@ -20,8 +20,10 @@ export default function DatePeriod(props) {
             </Form>
           </Col>
           <Col>
-            <p>End of 180 day travel period: { props.data.endOfPeriodDate ? props.data.endOfPeriodDate.toLocaleDateString() : "Not yet selected" }</p>
-            <p>Start of 180 day travel period: { props.data.startOfPeriodDate ? props.data.startOfPeriodDate.toLocaleDateString() : "Not yet selected" }</p>
+            <div className="float-left">
+              <p>End of 180 day travel period: <b>{ props.data.endOfPeriodDate ? props.data.endOfPeriodDate.toLocaleDateString() + " - default is today's date" : "Not yet selected" } </b></p>
+              <p>Start of 180 day travel period: <b>{ props.data.startOfPeriodDate ? props.data.startOfPeriodDate.toLocaleDateString() : "Not yet selected" }</b></p>
+            </div>
           </Col>
         </Row>
       </Container>
