@@ -111,9 +111,7 @@ class DateCalculator extends React.Component {
         </Row>
         <DatePeriod data={this.state} clickHandler={this.handleDatePeriodChange} />
         <Row className="p-1 center">
-        <div>  
             {this.state.trips.map((trip, index) => (  
-              <Row>
               <Trip 
                 key={trip.id} 
                 handleStartDateChange={(event) => this.handleStartDateChange(trip, event)}  
@@ -122,10 +120,8 @@ class DateCalculator extends React.Component {
                 handleTripRemove={(event) => this.removeTrip(trip, event)}
                 isFirstElement={index === 0}
               />
-              </Row>
               ))
             }
-        </div>
         </Row>
         <CalculateButton handleCalculation={this.calculation} />     
           <h1>Days spent in the EU: {this.state.totalDaysInEu}</h1>
