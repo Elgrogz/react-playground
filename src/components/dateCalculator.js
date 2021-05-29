@@ -109,7 +109,11 @@ class DateCalculator extends React.Component {
         <Row className="p-3 center">
           <h1>EU Travel Calculator</h1>
         </Row>
-        <DatePeriod data={this.state} clickHandler={this.handleDatePeriodChange} />
+        <DatePeriod 
+          periodEndDate={this.state.endOfPeriodDate} 
+          periodStateDate={this.state.startOfPeriodDate}
+          clickHandler={this.handleDatePeriodChange} 
+        />
         <Row className="p-1 center">
             {this.state.trips.map((trip, index) => (  
               <Trip 

@@ -43,6 +43,9 @@
 - React testing library
 - React Bootstrap
 - Codecov
+- LogRocket (redux logging)
+- Flow (linter)
+- Snapshot testing with jest
 
 ## Shane advice
 
