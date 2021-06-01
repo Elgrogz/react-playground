@@ -46,6 +46,8 @@
 - LogRocket (redux logging)
 - Flow (linter)
 - Snapshot testing with jest
+- Railway for cloud storage
+
 
 ## Shane advice
 
