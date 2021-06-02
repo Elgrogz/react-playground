@@ -1,5 +1,8 @@
 import {addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays, startOfDay} from 'date-fns'
 
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+
 import React from 'react'
 import DatePeriod from './datePeriod'
 import Trip from './trip'
@@ -98,17 +101,18 @@ class DateCalculator extends React.Component {
   render() {   
     let dateWarning;
     this.state.totalDaysInEu > 90 ? 
-        dateWarning = <p>The user has spent more than 90 days in the EU! Leave now!</p> : 
-        dateWarning = <p>The user has spent less than 90 days in the EU! Stick around!</p> 
-
+    dateWarning = <h2>You've spent more than 90 days in the EU! Leave now!</h2> : 
+    dateWarning = <h2>You've spent less than 90 days in the EU! Stick around!</h2> 
+    
     return (
-      <div className="App">
-        <header className="App-header">
-          <DatePeriod
-            data={this.state}
-            clickHandler={this.handleDatePeriodChange} 
-          />
-          <div>  
+      <Container className="center">
+        <h1 className="p-3 center">EU Travel Calculator</h1>
+        <DatePeriod 
+          periodEndDate={this.state.endOfPeriodDate} 
+          periodStateDate={this.state.startOfPeriodDate}
+          clickHandler={this.handleDatePeriodChange} 
+        />
+        <Row className="p-1 center">
             {this.state.trips.map((trip, index) => (  
               <Trip 
                 key={trip.id} 
@@ -117,19 +121,14 @@ class DateCalculator extends React.Component {
                 handleTripAdd={this.addTrip}
                 handleTripRemove={(event) => this.removeTrip(trip, event)}
                 isFirstElement={index === 0}
-              >
-              </Trip>         
-            ))}
-          </div>
-
-          <CalculateButton handleCalculation={this.calculation} />
-
-          <p>Days spent in the EU: {this.state.totalDaysInEu}</p>
-          
+              />
+              ))
+            }
+        </Row>
+        <CalculateButton handleCalculation={this.calculation} />     
+          <h1>Days spent in the EU: {this.state.totalDaysInEu}</h1>
           {dateWarning} 
-
-        </header>
-      </div>
+      </Container>
     );
   }
 }

@@ -1,18 +1,31 @@
 import React from 'react';
 
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 export default function DatePeriod(props) { 
     return (
-      <div>
-        <p>End of 180 day travel period: { props.data.endOfPeriodDate ? props.data.endOfPeriodDate.toLocaleDateString() : "Not yet selected" }</p>
-        <p>Start of 180 day travel period: { props.data.startOfPeriodDate ? props.data.startOfPeriodDate.toLocaleDateString() : "Not yet selected" }</p>
-        <form onSubmit={props.submitHandler}>
-          <label>
-            End of Period Date: 
-            <input type="date" 
-              onChange={props.clickHandler} 
-            />
-          </label>
-        </form>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <Form className="float-right">
+              <Form.Group>
+                <Form.Label>
+                  End of Period Date: 
+                <Form.Control type="date" onChange={props.clickHandler} />
+                </Form.Label>
+              </Form.Group>
+            </Form>
+          </Col>
+          <Col>
+            <div className="float-left">
+              <p>End of 180 day travel period: <b>{ props.periodEndDate ? props.periodEndDate.toLocaleDateString() + " - default is today's date" : "Not yet selected" } </b></p>
+              <p>Start of 180 day travel period: <b>{ props.periodStartDate ? props.periodStartDate.toLocaleDateString() : "Not yet selected" }</b></p>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     )
 }

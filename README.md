@@ -1,46 +1,69 @@
-## EU Travel Calculator
+# EU Travel Calculator
 
-Hierarchy:
-- DateCalculator
-  - [ ] End of 180 period input date
-  - [ ] Trip Inputs
-  - [ ] Add another trip button
-  - [ ] Remove trip button
-  - [ ] Calculate Button
-  - [ ] Result output
+## Components
 
-DateCalculator State:
-  - [ ] End of 180 days date
-  - [ ] Start of 180 days date
-  - [ ] Array of trips
-    - [ ] Trip start date
-    - [ ] Trip end date
-  - 
+- [x] End of 180 period input date
+- [x] Trip Inputs
+- [x] Add another trip button
+- [x] Remove trip button
+- [x] Calculate Button
+- [x] Result output
 
-  TODOS
+## DateCalculator State
 
-  - [ ] Have one add trip button?
-  - [ ] tests - enzyme, jest, etc
+- [x] End of 180 days date
+- [x] Start of 180 days date
+- [x] Array of trips
+  - [x] Trip start date
+  - [x] Trip end date
+- [x] Calculation
+  - [x] Overlapping trips over start or end of period have the correct dates (they adopt the start or end period date)
+  - [x] Filter trips that are outside the travel period
+  - [x] Total up the days for valid trips
+  - [x] Show users result
+
+## To-dos
+
+- [ ] Have one add trip button?
+- [ ] Align elements better
+- [ ] Tests
+  - [ ] Business Logic (jest?)
+  - [ ] UI (React Testing Library)
+- [ ] Get CI up and running (github actions)
+  - [ ] Codecov
+- [ ] Deploy (Netlify? AWS? Github Pages?)
+
+## Techs to investigate
+
+- lodash for array management (deleting arrays, updating specific elements of an array in an immutable way)
+- moment/date-fns for datetime handling
+- Elm - purely functional language to build reactive JS apps, similar to Redux
+- Redux
+- Jest
+- React testing library
+- React Bootstrap
+- Codecov
+- LogRocket (redux logging)
+- Flow (linter)
+- Snapshot testing with jest
+- Railway for cloud storage
 
 
-
--   lodash for array management (deleting arrays, updating specific elements of an array in an immutable way)
--   moment/date-fns for datetime handling
--   Elm - purely functional language to build reactive JS apps, similar to Redux
+## Shane advice
 
 Here's how I might approach an app where you initially have one row with two date inputs, an "add new row" button, and when you change the date inputs the calculation changes automatically:  
 
--   The parent component handles all state
--   We keep track of a hash  **and**  a list for trips. The hash holds the data about the trips, the list specifies the ordering of the trips
--   The hash looks like e.g.  `{ "trip1": {start_date: A, end_date: B}, "trip2": {start_date: C, end_date: D}}`
--   i.e. it's a hash where the keys are the trip id and the values are a hash of start and end dates
--   The list looks like e.g.  `["trip1", "trip2"]`
--   i.e. it's the trip ids in a specific order
--   We have to generate trip ids to keep track of which trip we're changing (can use random strings)
+- The parent component handles all state
+- We keep track of a hash  **and**  a list for trips. The hash holds the data about the trips, the list specifies the ordering of the trips
+- The hash looks like e.g.  `{ "trip1": {start_date: A, end_date: B}, "trip2": {start_date: C, end_date: D}}`
+- i.e. it's a hash where the keys are the trip id and the values are a hash of start and end dates
+- The list looks like e.g.  `["trip1", "trip2"]`
+- i.e. it's the trip ids in a specific order
+- We have to generate trip ids to keep track of which trip we're changing (can use random strings)
 
 That'd look something like:  
 
-```
+```js
 class MyComponent extends React.Component {  
   state = {  
     trips: {"initial": {start_date: undefined, end_date: undefined} }, // holds data for each trip  
@@ -85,11 +108,8 @@ The trickiness comes because we want to keep track of the order of trips - a com
 
 a hash is easy to update, but it has no inherent ordering. an array has ordering but is tricky to update
 
-
-
-
-
-# Getting Started with Create React App
+# React Guff 
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
