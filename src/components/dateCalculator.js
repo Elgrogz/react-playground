@@ -106,9 +106,7 @@ class DateCalculator extends React.Component {
     
     return (
       <Container className="center">
-        <Row className="p-3 center">
-          <h1>EU Travel Calculator</h1>
-        </Row>
+        <h1 className="p-3 center">EU Travel Calculator</h1>
         <DatePeriod 
           periodEndDate={this.state.endOfPeriodDate} 
           periodStateDate={this.state.startOfPeriodDate}
