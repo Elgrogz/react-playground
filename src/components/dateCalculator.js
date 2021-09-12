@@ -31,9 +31,6 @@ class DateCalculator extends React.Component {
       endOfPeriodDate: date,
       startOfPeriodDate: addDays(date, -179)
     });
-    console.log("date period changed")
-    console.log("end of period date: " + this.state.endOfPeriodDate.toLocaleDateString())
-    console.log("start of period date: " + this.state.startOfPeriodDate.toLocaleDateString())
   }
 
   handleTripStartDateChange = (trip, event) => {  

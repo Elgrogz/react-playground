@@ -25,8 +25,8 @@ export default function DatePeriod(props) {
           </Col>
           <Col>
             <div className="float-left">
-              <p>End of 180 day travel period: <b>{ props.periodEndDate ? props.periodEndDate.toLocaleDateString() : "Not yet selected" } </b></p>
-              <p>Start of 180 day travel period: <b>{ props.periodStartDate ? props.periodStartDate.toLocaleDateString() : "Not yet selected" }</b></p>
+              <p>End of 180 day travel period: <b role="period-end-date-label">{ props.periodEndDate ? props.periodEndDate.toLocaleDateString() : "Not yet selected" } </b></p>
+              <p>Start of 180 day travel period: <b role="period-start-date-label">{ props.periodStartDate ? props.periodStartDate.toLocaleDateString() : "Not yet selected" }</b></p>
             </div>
           </Col>
         </Row>
