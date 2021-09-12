@@ -13,15 +13,15 @@ export default function Trip(props) {
           <Form.Group controlId="tripStartDate">
             <Form.Label className="m-1">
               Start date of Trip: 
-              <Form.Control type="date" onChange={props.handleStartDateChange} />
+              <Form.Control type="date" onChange={props.handleTripStartDateChange} />
             </Form.Label>
         
             <Form.Label className="m-1" >
             End date of Trip: 
-              <Form.Control type="date" onChange={props.handleEndDateChange} />
+              <Form.Control type="date" onChange={props.handleTripEndDateChange} />
             </Form.Label>
           
-            <Button className="m-1" variant="success" type="submit" onClick={props.handleTripAdd}>Add New Trip</Button>
+            {/* <Button className="m-1" variant="success" type="submit" onClick={props.handleTripAdd}>Add New Trip</Button> */}
             {removeTripButton}
           </Form.Group>
         </Form>
