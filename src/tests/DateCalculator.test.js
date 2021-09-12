@@ -32,6 +32,6 @@ it("renders calculator page with correct title", () => {
 it("renders calculator page with end of period date as today's date", () => {
   mockDate('2021-08-25T12:34:57z')
   render(<DateCalculator />);
-  const endOfTravelPeriodLabel = screen.getByRole("period-end-date-label");
+  const endOfTravelPeriodLabel = screen.getByTestId("period-end-date-label");
   expect(endOfTravelPeriodLabel).toHaveTextContent("8/25/2021");
 });
