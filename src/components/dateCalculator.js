@@ -2,6 +2,7 @@ import {addDays, isAfter, isBefore, isEqual, parseISO, differenceInDays, startOf
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import Button from 'react-bootstrap/Button'
 
 import React from 'react'
 import DatePeriod from './datePeriod'
@@ -30,9 +31,12 @@ class DateCalculator extends React.Component {
       endOfPeriodDate: date,
       startOfPeriodDate: addDays(date, -179)
     });
+    console.log("date period changed")
+    console.log("end of period date: " + this.state.endOfPeriodDate.toLocaleDateString())
+    console.log("start of period date: " + this.state.startOfPeriodDate.toLocaleDateString())
   }
 
-  handleStartDateChange = (trip, event) => {  
+  handleTripStartDateChange = (trip, event) => {  
     const indexToUpdate = this.state.trips.indexOf(trip)
     let trips = [...this.state.trips]
     const tempTrip = {
@@ -43,7 +47,7 @@ class DateCalculator extends React.Component {
     this.setState({trips: trips})
   }  
   
-  handleEndDateChange = (trip, event) => {  
+  handleTripEndDateChange = (trip, event) => {  
     const indexToUpdate = this.state.trips.indexOf(trip)
     let trips = [...this.state.trips]
     const tempTrip = {
@@ -101,7 +105,7 @@ class DateCalculator extends React.Component {
   render() {   
     let dateWarning;
     this.state.totalDaysInEu > 90 ? 
-    dateWarning = <h2>You've spent more than 90 days in the EU! Leave now!</h2> : 
+    dateWarning = <h2>You've spent more than 90 days in the EU! Leave now! 💩</h2> : 
     dateWarning = <h2>You've spent less than 90 days in the EU! Stick around!</h2> 
     
     return (
@@ -111,15 +115,16 @@ class DateCalculator extends React.Component {
         </Row>
         <DatePeriod 
           periodEndDate={this.state.endOfPeriodDate} 
-          periodStateDate={this.state.startOfPeriodDate}
+          periodStartDate={this.state.startOfPeriodDate}
           clickHandler={this.handleDatePeriodChange} 
         />
+        <Button className="m-1" variant="success" type="submit" onClick={this.addTrip}>Add New Trip</Button>
         <Row className="p-1 center">
             {this.state.trips.map((trip, index) => (  
               <Trip 
                 key={trip.id} 
-                handleStartDateChange={(event) => this.handleStartDateChange(trip, event)}  
-                handleEndDateChange={(event) => this.handleEndDateChange(trip, event)}  
+                handleTripStartDateChange={(event) => this.handleTripStartDateChange(trip, event)}  
+                handleTripEndDateChange={(event) => this.handleTripEndDateChange(trip, event)}  
                 handleTripAdd={this.addTrip}
                 handleTripRemove={(event) => this.removeTrip(trip, event)}
                 isFirstElement={index === 0}
