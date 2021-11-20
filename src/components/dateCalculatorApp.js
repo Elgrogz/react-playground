@@ -46,7 +46,7 @@ function DateCalculatorApp() {
       startDate: parseISO(event.target.value),
     };
     tempTrips[indexToUpdate] = tempTrip;
-    setTrips({ trips: trips });
+    setTrips(tempTrips);
   };
 
   const handleTripEndDateChange = (trip, event) => {
@@ -57,14 +57,14 @@ function DateCalculatorApp() {
       endDate: parseISO(event.target.value),
     };
     tempTrips[indexToUpdate] = tempTrip;
-    setTrips({ trips: trips });
+    setTrips(tempTrips);
   };
 
   const addTrip = (event) => {
     event.preventDefault();
     let tempTrips = [...trips];
     tempTrips.push(blankTripData);
-    setTrips({ trips: trips });
+    setTrips(tempTrips);
   };
 
   const removeTrip = (trip, event) => {
@@ -72,7 +72,7 @@ function DateCalculatorApp() {
     const indexToUpdate = trips.indexOf(trip);
     let tempTrips = [...trips];
     tempTrips.splice(indexToUpdate, 1);
-    setTrips({ trips: trips });
+    setTrips(tempTrips);
   };
 
   const calculation = () => {
