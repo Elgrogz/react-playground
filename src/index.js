@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import DateCalculator from './components/dateCalculator';
+import DateCalculatorApp from './components/dateCalculatorApp';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <DateCalculator />
+    <DateCalculatorApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
