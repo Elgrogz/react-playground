@@ -46,19 +46,3 @@ export default function Trip(props) {
     </Container>
   );
 }
-
-{
-  /* <Row className="p-1 center">
-{this.state.trips.map((trip, index) => (  
-  <Trip 
-    key={trip.id} 
-    handleTripStartDateChange={(event) => this.handleTripStartDateChange(trip, event)}  
-    handleTripEndDateChange={(event) => this.handleTripEndDateChange(trip, event)}  
-    handleTripAdd={this.addTrip}
-    handleTripRemove={(event) => this.removeTrip(trip, event)}
-    isFirstElement={index === 0}
-  />
-  ))
-}
-</Row> */
-}
