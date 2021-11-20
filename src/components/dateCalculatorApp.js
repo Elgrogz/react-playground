@@ -10,6 +10,8 @@ import {
 
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 import React, { useState } from "react";
 import DatePeriod from "./datePeriod";
@@ -126,35 +128,46 @@ function DateCalculatorApp() {
       ));
 
   return (
-    <Container className="center">
-      <h1 className="p-3 center">EU Travel Calculator</h1>
-      <DatePeriod
-        periodEndDate={endOfPeriodDate}
-        periodStartDate={startOfPeriodDate}
-        clickHandler={handleDatePeriodChange}
-      />
-      <Button className="m-1" variant="success" type="submit" onClick={addTrip}>
-        Add New Trip
-      </Button>
-      <div id="trip-container">
-        {trips.map((trip, index) => (
-          <Trip
-            key={trip.id}
-            handleTripStartDateChange={(event) =>
-              handleTripStartDateChange(trip, event)
-            }
-            handleTripEndDateChange={(event) =>
-              handleTripEndDateChange(trip, event)
-            }
-            handleTripAdd={addTrip}
-            handleTripRemove={(event) => removeTrip(trip, event)}
-            isFirstElement={index === 0}
+    <Container>
+      <Row>
+        <Col xs={0} lg={2} />
+        <Col xs={12} className="center">
+          <h1 className="p-3 center">EU Travel Calculator</h1>
+          <DatePeriod
+            periodEndDate={endOfPeriodDate}
+            periodStartDate={startOfPeriodDate}
+            clickHandler={handleDatePeriodChange}
           />
-        ))}
-      </div>
-      <CalculateButton handleCalculation={calculation} />
-      <h1>Days spent in the EU: {totalDaysInTheEu}</h1>
-      {dateWarning}
+          <Button
+            className="m-1"
+            variant="success"
+            type="submit"
+            onClick={addTrip}
+          >
+            Add New Trip
+          </Button>
+          <div id="trip-container">
+            {trips.map((trip, index) => (
+              <Trip
+                key={trip.id}
+                handleTripStartDateChange={(event) =>
+                  handleTripStartDateChange(trip, event)
+                }
+                handleTripEndDateChange={(event) =>
+                  handleTripEndDateChange(trip, event)
+                }
+                handleTripAdd={addTrip}
+                handleTripRemove={(event) => removeTrip(trip, event)}
+                isFirstElement={index === 0}
+              />
+            ))}
+          </div>
+          <CalculateButton handleCalculation={calculation} />
+          <h1>Days spent in the EU: {totalDaysInTheEu}</h1>
+          {dateWarning}
+        </Col>
+        <Col xs={0} lg={2} />
+      </Row>
     </Container>
   );
 }

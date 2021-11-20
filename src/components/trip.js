@@ -8,7 +8,7 @@ export default function Trip(props) {
   if (!props.isFirstElement) {
     removeTripButton = (
       <Button
-        className="m-2"
+        // className="m-3"
         variant="warning"
         onClick={props.handleTripRemove}
       >
@@ -18,11 +18,11 @@ export default function Trip(props) {
   }
 
   return (
-    <Container>
-      <Row>
-        <Form>
-          {/* <Col></Col> */}
-          <Col>
+    <Form>
+      <Container>
+        <Row>
+          <Col xs={2} />
+          <Col xs={4}>
             <Form.Group controlId="tripStartDate">
               <Form.Label className="m-1">
                 Start date of Trip:
@@ -31,6 +31,10 @@ export default function Trip(props) {
                   onChange={props.handleTripStartDateChange}
                 />
               </Form.Label>
+            </Form.Group>
+          </Col>
+          <Col xs={4}>
+            <Form.Group controlId="tripEndDate">
               <Form.Label className="m-1">
                 End date of Trip:
                 <Form.Control
@@ -40,9 +44,9 @@ export default function Trip(props) {
               </Form.Label>
             </Form.Group>
           </Col>
-          <Col>{removeTripButton}</Col>
-        </Form>
-      </Row>
-    </Container>
+          <Col xs={2}>{removeTripButton}</Col>
+        </Row>
+      </Container>
+    </Form>
   );
 }
