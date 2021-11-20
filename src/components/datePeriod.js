@@ -1,9 +1,10 @@
 import React from "react";
-
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+
+import { format } from "date-fns";
 
 export default function DatePeriod(props) {
   return (
@@ -14,7 +15,11 @@ export default function DatePeriod(props) {
             <Form.Group>
               <Form.Label>
                 End of Period Date:
-                <Form.Control type="date" onChange={props.clickHandler} />
+                <Form.Control
+                  type="date"
+                  value={format(props.periodEndDate, "yyyy-MM-dd")}
+                  onChange={props.clickHandler}
+                />
                 (Default is today's date)
               </Form.Label>
             </Form.Group>
