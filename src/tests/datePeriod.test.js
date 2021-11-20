@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
-import ReactDOM from 'react-dom';
+import { render, screen } from "@testing-library/react";
+import ReactDOM from "react-dom";
 
-import DatePeriod from '../components/datePeriod';
+import DatePeriod from "../components/datePeriod";
 
 let container = null;
 let endOfPeriodDate = null;
@@ -14,6 +14,12 @@ beforeEach(() => {
   startOfPeriodDate = new Date();
 });
 
-it('renders calculator page with correct title', () => {
-  render(<DatePeriod endOfPeriodDate={endOfPeriodDate} startOfPeriodDate={startOfPeriodDate}/>, container);
+it("renders calculator page with correct title", () => {
+  render(
+    <DatePeriod
+      endOfPeriodDate={endOfPeriodDate}
+      startOfPeriodDate={startOfPeriodDate}
+    />,
+    container
+  );
 });
