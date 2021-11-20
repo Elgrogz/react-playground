@@ -8,8 +8,9 @@ export default function Trip(props) {
   if (!props.isFirstElement) {
     removeTripButton = (
       <Button
-        // className="m-3"
-        variant="warning"
+        className="mt-3 h-75"
+        variant="danger"
+        size="sm"
         onClick={props.handleTripRemove}
       >
         Remove Trip
@@ -20,7 +21,7 @@ export default function Trip(props) {
   return (
     <Form>
       <Container>
-        <Row>
+        <Row className="m-1">
           <Col xs={2} />
           <Col xs={4}>
             <Form.Group controlId="tripStartDate">
