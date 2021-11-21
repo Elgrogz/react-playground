@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import ReactDOM from "react-dom";
 
-import DateCalculatorApp from "../components/dateCalculatorApp";
+import DateCalculatorApp from "../components/DateCalculatorApp";
 
 const RealDate = Date;
 
