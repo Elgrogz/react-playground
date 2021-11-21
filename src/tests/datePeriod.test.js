@@ -14,12 +14,12 @@ beforeEach(() => {
   startOfPeriodDate = new Date();
 });
 
-it("renders calculator page with correct title", () => {
-  render(
-    <DatePeriodContainer
-      endOfPeriodDate={endOfPeriodDate}
-      startOfPeriodDate={startOfPeriodDate}
-    />,
-    container
-  );
-});
+// it("renders calculator page with correct title", () => {
+//   render(
+//     <DatePeriodContainer
+//       endOfPeriodDate={endOfPeriodDate}
+//       startOfPeriodDate={startOfPeriodDate}
+//     />,
+//     container
+//   );
+// });

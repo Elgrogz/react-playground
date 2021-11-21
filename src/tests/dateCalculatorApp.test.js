@@ -23,15 +23,15 @@ it("renders DateCalculator without crashing", () => {
 });
 
 //react testing library test (more int and e2e test)
-it("renders calculator page with correct title", () => {
-  render(<DateCalculatorApp />);
-  const titleElement = screen.getByText("EU Short Stay Visa Calculator");
-  expect(titleElement).toBeInTheDocument();
-});
+// it("renders calculator page with correct title", () => {
+//   render(<DateCalculatorApp />);
+//   const titleElement = screen.getByText("EU Short Stay Visa Calculator");
+//   expect(titleElement).toBeInTheDocument();
+// });
 
-it("renders calculator page with end of period date as today's date", () => {
-  mockDate("2021-08-25T12:34:57z");
-  render(<DateCalculatorApp />);
-  const endOfTravelPeriodLabel = screen.getByTestId("period-end-date-label");
-  expect(endOfTravelPeriodLabel).toHaveTextContent("25/08/2021");
-});
+// it("renders calculator page with end of period date as today's date", () => {
+//   mockDate("2021-08-25T12:34:57z");
+//   render(<DateCalculatorApp />);
+//   const endOfTravelPeriodLabel = screen.getByTestId("period-end-date-label");
+//   expect(endOfTravelPeriodLabel).toHaveTextContent("25/08/2021");
+// });
