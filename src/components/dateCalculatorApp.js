@@ -17,6 +17,7 @@ import DatePeriodContainer from "./DatePeriodContainer";
 import TripContainer from "./TripContainer";
 import CalculateButton from "./CalculateButton";
 import AddNewTripButton from "./AddNewTripButton";
+import Footer from "./Footer";
 
 const blankTripData = {
   id: startOfDay(Date.now()),
@@ -130,11 +131,11 @@ function DateCalculatorApp() {
   return (
     <Container className="center">
       <Row>
-        <h2 className="center mb-3">EU Short Stay Visa Calculator</h2>
+        <h1 className="center my-3">EU Short Stay Visa Calculator</h1>
       </Row>
       <Row>
         <Col></Col>
-        <Col xs={8}>
+        <Col xs={10}>
           <DatePeriodContainer
             periodEndDate={endOfPeriodDate}
             periodStartDate={startOfPeriodDate}
@@ -170,9 +171,14 @@ function DateCalculatorApp() {
         <CalculateButton handleCalculation={calculation} />
       </Row>
       <Row>
-        <h1>Days spent in the EU: {totalDaysInTheEu}</h1>
-        {dateWarning}
+        <Col />
+        <Col xs={10} className="border border-dark">
+          <h1>Days spent in the EU: {totalDaysInTheEu}</h1>
+          {dateWarning}
+        </Col>
+        <Col />
       </Row>
+      <Footer />
     </Container>
   );
 }
