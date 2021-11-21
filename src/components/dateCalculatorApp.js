@@ -138,6 +138,11 @@ function DateCalculatorApp() {
             periodStartDate={startOfPeriodDate}
             clickHandler={handleDatePeriodChange}
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={0} lg={2} />
+        <Col xs={12} className="center">
           <Button
             className="m-1"
             variant="success"
