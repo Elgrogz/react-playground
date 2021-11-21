@@ -3,17 +3,17 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export default function Trip(props) {
+export default function TripContainer(props) {
   let removeTripButton;
   if (!props.isFirstElement) {
     removeTripButton = (
       <Button
-        className="mt-3 h-75"
+        className="rounded-circle"
         variant="danger"
-        size="sm"
         onClick={props.handleTripRemove}
+        rounded
       >
-        Remove Trip
+        Remove
       </Button>
     );
   }
@@ -21,10 +21,10 @@ export default function Trip(props) {
   return (
     <Form>
       <Container>
-        <Row className="m-1">
+        <Row>
           <Col xs={2} />
           <Col xs={4}>
-            <Form.Group controlId="tripStartDate">
+            <Form.Group controlId="tripStartDate" className="float-end">
               <Form.Label className="m-1">
                 Start date of Trip:
                 <Form.Control
@@ -34,8 +34,8 @@ export default function Trip(props) {
               </Form.Label>
             </Form.Group>
           </Col>
-          <Col xs={4}>
-            <Form.Group controlId="tripEndDate">
+          <Col xs={6}>
+            <Form.Group controlId="tripEndDate" className="float-start">
               <Form.Label className="m-1">
                 End date of Trip:
                 <Form.Control
@@ -44,8 +44,8 @@ export default function Trip(props) {
                 />
               </Form.Label>
             </Form.Group>
+            <div className="float-start mt-4 ms-1">{removeTripButton}</div>
           </Col>
-          <Col xs={2}>{removeTripButton}</Col>
         </Row>
       </Container>
     </Form>

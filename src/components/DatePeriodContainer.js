@@ -6,12 +6,12 @@ import Col from "react-bootstrap/Col";
 
 import { format } from "date-fns";
 
-export default function DatePeriod(props) {
+export default function DatePeriodContainer(props) {
   return (
-    <Container>
+    <Container className="mt-2">
       <Row>
         <Col>
-          <Form className="float-right">
+          <Form className="float-end me-4">
             <Form.Group>
               <Form.Label>
                 End of Period Date:
@@ -26,7 +26,7 @@ export default function DatePeriod(props) {
           </Form>
         </Col>
         <Col>
-          <div className="float-left">
+          <div className="float-start px-1 mt-2 border border-dark">
             <p>
               End of 180 day travel period:{" "}
               <b data-testid="period-end-date-label">
@@ -35,7 +35,7 @@ export default function DatePeriod(props) {
                   : "Not yet selected"}{" "}
               </b>
             </p>
-            <p>
+            <p style={{ margin: "0px" }}>
               Start of 180 day travel period:{" "}
               <b data-testid="period-start-date-label">
                 {props.periodStartDate

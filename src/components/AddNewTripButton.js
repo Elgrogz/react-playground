@@ -1,0 +1,15 @@
+import React from "react";
+import Button from "react-bootstrap/Button";
+
+export default function AddNewTripButton(props) {
+  return (
+    <Button
+      className="my-2"
+      variant="success"
+      type="submit"
+      onClick={props.addTrip}
+    >
+      Add New Trip
+    </Button>
+  );
+}
