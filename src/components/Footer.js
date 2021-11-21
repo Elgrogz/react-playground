@@ -25,7 +25,7 @@ const Footer = () => (
               </a>
             </li>
             <li>
-              <a href="https://github.com/Elgrogz/single-page-eu-travel-calculator">
+              <a href="https://ec.europa.eu/home-affairs/policies/schengen-borders-and-visa/visa-policy/entry-and-stay-schengen-area_en">
                 More info about travel in the Schengen Area
               </a>
             </li>

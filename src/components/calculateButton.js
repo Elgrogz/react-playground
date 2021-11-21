@@ -7,9 +7,9 @@ export default function CalculateButton(props) {
   return (
     <Row>
       <Col></Col>
-      <Col xs={11}>
+      <Col xs={10}>
         <Button
-          className="submit-button my-3"
+          className="border submit-button my-3"
           variant="primary"
           size="lg"
           type="submit"
