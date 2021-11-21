@@ -11,7 +11,7 @@ export default function DatePeriod(props) {
     <Container>
       <Row>
         <Col>
-          <Form className="float-right">
+          <Form className="float-end me-4">
             <Form.Group>
               <Form.Label>
                 End of Period Date:
@@ -26,7 +26,7 @@ export default function DatePeriod(props) {
           </Form>
         </Col>
         <Col>
-          <div className="float-left">
+          <div className="float-start">
             <p>
               End of 180 day travel period:{" "}
               <b data-testid="period-end-date-label">
