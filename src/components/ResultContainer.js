@@ -6,7 +6,7 @@ const ResultContainer = (props) => {
   return (
     <Row>
       <Col />
-      <Col xs={10} className="border border-dark">
+      <Col xs={10} className="container-box">
         <h1>Days spent in the EU: {props.totalDaysInTheEu}</h1>
         {props.dateWarning}
       </Col>

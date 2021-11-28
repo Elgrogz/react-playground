@@ -145,8 +145,8 @@ const App = () => {
           totalDaysInTheEu={totalDaysInTheEu}
           dateWarning={dateWarning}
         />
-        <Footer />
       </Container>
+      <Footer />
     </div>
   );
 };

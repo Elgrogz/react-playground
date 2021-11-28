@@ -9,8 +9,8 @@ import AddNewTripButton from "./AddNewTripButton";
 const DateCalculatorContainer = (props) => {
   return (
     <Row>
-      <Col></Col>
-      <Col xs={10}>
+      <Col />
+      <Col xs={8} className="container-box">
         <DatePeriodContainer
           periodEndDate={props.endOfPeriodDate}
           periodStartDate={props.startOfPeriodDate}
@@ -19,7 +19,6 @@ const DateCalculatorContainer = (props) => {
         <AddNewTripButton addTrip={props.addTrip} />
         <Row>
           <Col xs={12} className="center">
-            <Col xs={0} lg={2} />
             <div id="trip-container">
               {props.trips.map((trip, index) => (
                 <TripContainer
@@ -37,10 +36,9 @@ const DateCalculatorContainer = (props) => {
               ))}
             </div>
           </Col>
-          <Col xs={0} lg={2} />
         </Row>
       </Col>
-      <Col></Col>
+      <Col />
     </Row>
   );
 };
