@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-export default function TripContainer(props) {
+const TripContainer = (props) => {
   let removeTripButton;
   if (!props.isFirstElement) {
     removeTripButton = (
@@ -50,4 +50,6 @@ export default function TripContainer(props) {
       </Container>
     </Form>
   );
-}
+};
+
+export default TripContainer;

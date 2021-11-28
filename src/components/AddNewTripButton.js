@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 
-export default function AddNewTripButton(props) {
+const AddNewTripButton = (props) => {
   return (
     <Button
       className="my-2"
@@ -12,4 +12,6 @@ export default function AddNewTripButton(props) {
       Add New Trip
     </Button>
   );
-}
+};
+
+export default AddNewTripButton;

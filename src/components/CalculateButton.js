@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-export default function CalculateButton(props) {
+const CalculateButton = (props) => {
   return (
     <Row>
       <Col></Col>
@@ -21,4 +21,6 @@ export default function CalculateButton(props) {
       <Col></Col>
     </Row>
   );
-}
+};
+
+export default CalculateButton;
