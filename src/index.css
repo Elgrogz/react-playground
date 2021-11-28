@@ -16,3 +16,20 @@ code {
   text-align: center;
   align-items: center;
 }
+
+.container-box {
+  padding: 10px;
+  background-color: #c8e3d4;
+  border: 3px solid;
+  border-radius: 20px;
+  border-color: #87aaaa;
+}
+
+.header-footer {
+  background-color: #f6eabe;
+}
+
+.date-box {
+  border-radius: 20px;
+  background-color: #87aaaa;
+}
