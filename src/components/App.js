@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   addDays,
   isAfter,
@@ -9,14 +10,11 @@ import {
 } from "date-fns";
 
 import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 
-import React, { useState } from "react";
-import DatePeriodContainer from "./DatePeriodContainer";
-import TripContainer from "./TripContainer";
+import Header from "./Header";
+import DateCalculatorContainer from "./DateCalculatorContainer";
 import CalculateButton from "./CalculateButton";
-import AddNewTripButton from "./AddNewTripButton";
+import ResultContainer from "./ResultContainer";
 import Footer from "./Footer";
 
 const blankTripData = {
@@ -25,7 +23,7 @@ const blankTripData = {
   endDate: null,
 };
 
-function DateCalculatorApp() {
+const App = () => {
   const todaysDate = startOfDay(new Date());
 
   const [endOfPeriodDate, setEndOfPeriodDate] = useState(todaysDate);
@@ -129,58 +127,28 @@ function DateCalculatorApp() {
       ));
 
   return (
-    <Container className="center">
-      <Row>
-        <h1 className="center my-3">EU Short Stay Visa Calculator</h1>
-      </Row>
-      <Row>
-        <Col></Col>
-        <Col xs={10}>
-          <DatePeriodContainer
-            periodEndDate={endOfPeriodDate}
-            periodStartDate={startOfPeriodDate}
-            clickHandler={handleDatePeriodChange}
-          />
-          <AddNewTripButton addTrip={addTrip} />
-          <Row>
-            <Col xs={12} className="center">
-              <Col xs={0} lg={2} />
-              <div id="trip-container">
-                {trips.map((trip, index) => (
-                  <TripContainer
-                    key={trip.id}
-                    handleTripStartDateChange={(event) =>
-                      handleTripStartDateChange(trip, event)
-                    }
-                    handleTripEndDateChange={(event) =>
-                      handleTripEndDateChange(trip, event)
-                    }
-                    handleTripAdd={addTrip}
-                    handleTripRemove={(event) => removeTrip(trip, event)}
-                    isFirstElement={index === 0}
-                  />
-                ))}
-              </div>
-            </Col>
-            <Col xs={0} lg={2} />
-          </Row>
-        </Col>
-        <Col></Col>
-      </Row>
-      <Row>
+    <div>
+      <Header />
+      <Container id="app" className="center">
+        <DateCalculatorContainer
+          endOfPeriodDate={endOfPeriodDate}
+          startOfPeriodDate={startOfPeriodDate}
+          handleDatePeriodChange={handleDatePeriodChange}
+          trips={trips}
+          addTrip={addTrip}
+          removeTrip={removeTrip}
+          handleTripStartDateChange={handleTripStartDateChange}
+          handleTripEndDateChange={handleTripEndDateChange}
+        />
         <CalculateButton handleCalculation={calculation} />
-      </Row>
-      <Row>
-        <Col />
-        <Col xs={10} className="border border-dark">
-          <h1>Days spent in the EU: {totalDaysInTheEu}</h1>
-          {dateWarning}
-        </Col>
-        <Col />
-      </Row>
-      <Footer />
-    </Container>
+        <ResultContainer
+          totalDaysInTheEu={totalDaysInTheEu}
+          dateWarning={dateWarning}
+        />
+        <Footer />
+      </Container>
+    </div>
   );
-}
+};
 
-export default DateCalculatorApp;
+export default App;
