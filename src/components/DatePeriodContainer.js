@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 
 import { format } from "date-fns";
 
-export default function DatePeriodContainer(props) {
+const DatePeriodContainer = (props) => {
   return (
     <Container className="mt-2">
       <Row>
@@ -48,4 +48,6 @@ export default function DatePeriodContainer(props) {
       </Row>
     </Container>
   );
-}
+};
+
+export default DatePeriodContainer;
