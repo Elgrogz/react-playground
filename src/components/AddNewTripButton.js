@@ -7,6 +7,7 @@ const AddNewTripButton = (props) => {
       className="my-2"
       variant="success"
       type="submit"
+      data-testid="add-new-trip-button"
       onClick={props.addTrip}
     >
       Add New Trip

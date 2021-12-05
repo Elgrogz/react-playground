@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import ReactDOM from "react-dom";
 
-import DateCalculatorApp from "../components/DateCalculatorApp";
+import App from "../components/App";
 
 const RealDate = Date;
 
@@ -18,20 +18,20 @@ afterEach(() => {
 });
 
 // jest test, more unit and component level testing
-it("renders DateCalculator without crashing", () => {
-  ReactDOM.render(<DateCalculatorApp />, document.createElement("div"));
+it("renders App without crashing", () => {
+  ReactDOM.render(<App />, document.createElement("div"));
 });
 
 //react testing library test (more int and e2e test)
-// it("renders calculator page with correct title", () => {
-//   render(<DateCalculatorApp />);
-//   const titleElement = screen.getByText("EU Short Stay Visa Calculator");
-//   expect(titleElement).toBeInTheDocument();
-// });
+it("renders calculator page with correct title", () => {
+  render(<App />);
+  const titleElement = screen.getByText("EU Short Stay Visa Calculator");
+  expect(titleElement).toBeInTheDocument();
+});
 
 // it("renders calculator page with end of period date as today's date", () => {
 //   mockDate("2021-08-25T12:34:57z");
-//   render(<DateCalculatorApp />);
+//   render(<App />);
 //   const endOfTravelPeriodLabel = screen.getByTestId("period-end-date-label");
 //   expect(endOfTravelPeriodLabel).toHaveTextContent("25/08/2021");
 // });

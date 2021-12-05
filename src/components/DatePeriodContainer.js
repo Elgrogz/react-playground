@@ -14,6 +14,7 @@ const DatePeriodContainer = (props) => {
             End of Period Date: (Default is today's date):
           </Form.Label>
           <Form.Control
+            data-testid="period-end-date"
             type="date"
             value={format(props.periodEndDate, "yyyy-MM-dd")}
             onChange={props.clickHandler}
@@ -28,7 +29,7 @@ const DatePeriodContainer = (props) => {
             <b data-testid="period-end-date-label">
               {props.periodEndDate
                 ? props.periodEndDate.toLocaleDateString()
-                : "Not yet selected"}{" "}
+                : "Not yet selected"}
             </b>
           </p>
           <p>

@@ -23,6 +23,7 @@ const DateCalculatorContainer = (props) => {
               {props.trips.map((trip, index) => (
                 <TripContainer
                   key={trip.id}
+                  index={index}
                   handleTripStartDateChange={(event) =>
                     props.handleTripStartDateChange(trip, event)
                   }

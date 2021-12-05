@@ -11,6 +11,7 @@ const TripContainer = (props) => {
         className="rounded-circle"
         variant="danger"
         onClick={props.handleTripRemove}
+        data-testid={"trip-remove-" + props.index}
         rounded
       >
         Remove
@@ -28,6 +29,7 @@ const TripContainer = (props) => {
               <Form.Label className="m-1">
                 Start date of Trip:
                 <Form.Control
+                  data-testid={"trip-start-date-" + props.index}
                   type="date"
                   onChange={props.handleTripStartDateChange}
                 />
@@ -39,6 +41,7 @@ const TripContainer = (props) => {
               <Form.Label className="m-1">
                 End date of Trip:
                 <Form.Control
+                  data-testid={"trip-end-date" + props.index}
                   type="date"
                   onChange={props.handleTripEndDateChange}
                 />
