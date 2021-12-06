@@ -29,9 +29,16 @@ it("renders calculator page with correct title", () => {
   expect(titleElement).toBeInTheDocument();
 });
 
-// it("renders calculator page with end of period date as today's date", () => {
-//   mockDate("2021-08-25T12:34:57z");
-//   render(<App />);
-//   const endOfTravelPeriodLabel = screen.getByTestId("period-end-date-label");
-//   expect(endOfTravelPeriodLabel).toHaveTextContent("25/08/2021");
-// });
+it("renders calculator page with end of period date as today's date", () => {
+  mockDate("2021-08-25T12:34:57z");
+  render(<App />);
+  const endOfTravelPeriodLabel = screen.getByTestId("period-end-date-label");
+  expect(endOfTravelPeriodLabel).toHaveTextContent("25/08/2021");
+});
+
+it("renders calculator page with end of period date as today's date ", () => {
+  mockDate("2021-08-25T12:34:57z");
+  render(<App />);
+  const endOfTravelPeriodLabel = screen.getByTestId("period-end-date-label");
+  expect(endOfTravelPeriodLabel).toHaveTextContent("25/08/2021");
+});

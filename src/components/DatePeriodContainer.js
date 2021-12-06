@@ -6,18 +6,21 @@ import Col from "react-bootstrap/Col";
 import { format } from "date-fns";
 
 const DatePeriodContainer = (props) => {
+  // const formatDate = () => {
+  //   props.periodEndDate === "blah" ? format(props.periodEndDate, "yyyy-MM-dd") : "";
+  // };
+
   return (
     <Row className="mt=1 mb-3">
-      <Form className="float-end me-4 justify-content-center">
+      <Form className="float-end me-4 ">
         <Form.Group className="mb-3">
-          <Form.Label>
+          <Form.Label className="d-flex fw-light">
             End of Period Date: (Default is today's date):
           </Form.Label>
           <Form.Control
             data-testid="period-end-date"
             type="date"
-            value={format(props.periodEndDate, "yyyy-MM-dd")}
-            onChange={props.clickHandler}
+            onChange={props.handleDatePeriodChange}
           />
         </Form.Group>
       </Form>
@@ -27,17 +30,13 @@ const DatePeriodContainer = (props) => {
           <p className="mt-2">
             End of 180 day travel period:{" "}
             <b data-testid="period-end-date-label">
-              {props.periodEndDate
-                ? props.periodEndDate.toLocaleDateString()
-                : "Not yet selected"}
+              {props.periodEndDate.toLocaleDateString()}
             </b>
           </p>
           <p>
             Start of 180 day travel period:{" "}
             <b data-testid="period-start-date-label">
-              {props.periodStartDate
-                ? props.periodStartDate.toLocaleDateString()
-                : "Not yet selected"}
+              {props.periodStartDate.toLocaleDateString()}
             </b>
           </p>
         </Col>

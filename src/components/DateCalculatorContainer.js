@@ -14,7 +14,7 @@ const DateCalculatorContainer = (props) => {
         <DatePeriodContainer
           periodEndDate={props.endOfPeriodDate}
           periodStartDate={props.startOfPeriodDate}
-          clickHandler={props.handleDatePeriodChange}
+          handleDatePeriodChange={props.handleDatePeriodChange}
         />
         <AddNewTripButton addTrip={props.addTrip} />
         <Row>
