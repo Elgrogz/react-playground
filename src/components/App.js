@@ -33,6 +33,8 @@ const App = () => {
   const [trips, setTrips] = useState([blankTripData]);
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
+  const validateDate = () => {};
+
   const handleDatePeriodChange = (event) => {
     const date = new Date(event.target.value);
     setEndOfPeriodDate(date);
