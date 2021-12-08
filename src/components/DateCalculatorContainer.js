@@ -9,28 +9,9 @@ import AddNewTripButton from "./AddNewTripButton";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
-import frLocale from "date-fns/locale/fr";
-import gbLocale from "date-fns/locale/en-GB";
-
-// const localeMap = {
-//   gb: gbLocale,
-//   fr: frLocale,
-// };
-
-// const maskMap = {
-//   fr: "__/__/____",
-//   gb: "__/__/____",
-// };
-
 const DateCalculatorContainer = (props) => {
-  // const [locale, setLocale] = React.useState("gb");
-
   return (
-    <LocalizationProvider
-      dateAdapter={AdapterDateFns}
-      locale={gbLocale}
-      // maskmap={maskMap}
-    >
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Row>
         <Col />
         <Col xs={8} className="container-box">

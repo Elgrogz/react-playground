@@ -3,18 +3,16 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { format } from "date-fns";
 import DatePicker from "@mui/lab/DatePicker";
 import TextField from "@mui/material/TextField";
 
 const DatePeriodContainer = (props) => {
-  // const formatDate = () => {
-  //   props.periodEndDate === "blah" ? format(props.periodEndDate, "yyyy-MM-dd") : "";
-  // };
+  const [date, setDate] = React.useState(props.periodEndDate);
 
-  const [date, setDate] = React.useState(null);
-
-  // onChange={props.handleDatePeriodChange}
+  const handleDateChange = (date) => {
+    setDate(date);
+    props.handleDatePeriodChange(date);
+  };
 
   return (
     <Row className="mt=1 mb-3">
@@ -26,14 +24,9 @@ const DatePeriodContainer = (props) => {
           <DatePicker
             label="Default is today's date"
             data-testid="period-end-date"
+            inputFormat="dd/MM/yyyy"
             value={date}
-            mask={"__/__/____"}
-            onChange={(newValue) => {
-              setDate(newValue);
-              if (format(date, "ddMMyyyy")) {
-                props.handleDatePeriodChange(date);
-              }
-            }}
+            onChange={handleDateChange}
             renderInput={(params) => <TextField {...params} />}
           />
         </Form.Group>

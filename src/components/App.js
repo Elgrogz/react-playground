@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   addDays,
   isAfter,
@@ -33,10 +33,12 @@ const App = () => {
   const [trips, setTrips] = useState([blankTripData]);
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
-  const validateDate = () => {};
+  useEffect(() => {
+    console.log("period date --------> " + endOfPeriodDate);
+  });
 
-  const handleDatePeriodChange = (event) => {
-    const date = new Date(event.target.value);
+  const handleDatePeriodChange = (newDate) => {
+    const date = new Date(newDate);
     setEndOfPeriodDate(date);
     setStartOfPeriodDate(addDays(date, -179));
   };
