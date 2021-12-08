@@ -3,7 +3,20 @@ import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import DatePicker from "@mui/lab/DatePicker";
+import TextField from "@mui/material/TextField";
+
 const TripContainer = (props) => {
+  const [startDate, setStartDate] = React.useState(null);
+
+  const handleTripStartDateChange = (date) => {
+    // console.log("trip --------> " + trip);
+    // console.log("date --------> " + date);
+    setStartDate(date);
+    // console.log("startdate --------> " + startDate);
+    props.handleTripStartDateChange(date);
+  };
+
   let removeTripButton;
   if (!props.isFirstElement) {
     removeTripButton = (
@@ -26,13 +39,20 @@ const TripContainer = (props) => {
           <Col xs={2} />
           <Col xs={4}>
             <Form.Group controlId="tripStartDate" className="float-end">
-              <Form.Label className="m-1 d-flex fw-light">
-                Start date of Trip:
-              </Form.Label>
-              <Form.Control
+              {/* <Form.Label className="m-1 d-flex fw-light"></Form.Label> */}
+              {/* <Form.Control
                 data-testid={"trip-start-date-" + props.index}
                 type="date"
                 onChange={props.handleTripStartDateChange}
+              /> */}
+              <DatePicker
+                label="Start date of Trip: "
+                value={startDate}
+                data-testid={"trip-start-date-" + props.index}
+                inputFormat="dd/MM/yyyy"
+                // value={props.}
+                onChange={handleTripStartDateChange}
+                renderInput={(params) => <TextField {...params} />}
               />
             </Form.Group>
           </Col>

@@ -28,6 +28,7 @@ const DateCalculatorContainer = (props) => {
                   <TripContainer
                     key={trip.id}
                     index={index}
+                    trip={trip}
                     handleTripStartDateChange={(event) =>
                       props.handleTripStartDateChange(trip, event)
                     }
