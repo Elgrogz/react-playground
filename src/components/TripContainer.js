@@ -1,7 +1,10 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import DatePicker from "@mui/lab/DatePicker";
 import TextField from "@mui/material/TextField";
@@ -24,8 +27,10 @@ const TripContainer = (props) => {
   if (!props.isFirstElement) {
     removeTripButton = (
       <Button
-        className="rounded-circle"
-        variant="danger"
+        variant="contained"
+        color="error"
+        size="small"
+        startIcon={<DeleteIcon />}
         onClick={props.handleTripRemove}
         data-testid={"trip-remove-" + props.index}
         rounded
