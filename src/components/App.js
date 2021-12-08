@@ -45,8 +45,6 @@ const App = () => {
   };
 
   const handleTripStartDateChange = (trip, date) => {
-    console.log("date --------> " + date);
-    console.log("Trip --------> " + trip);
     const indexToUpdate = trips.indexOf(trip);
     let tempTrips = [...trips];
     const tempTrip = {
@@ -57,12 +55,12 @@ const App = () => {
     setTrips(tempTrips);
   };
 
-  const handleTripEndDateChange = (trip, event) => {
+  const handleTripEndDateChange = (trip, date) => {
     const indexToUpdate = trips.indexOf(trip);
     let tempTrips = [...trips];
     const tempTrip = {
       ...trips[indexToUpdate],
-      endDate: parseISO(event.target.value),
+      endDate: startOfDay(date),
     };
     tempTrips[indexToUpdate] = tempTrip;
     setTrips(tempTrips);

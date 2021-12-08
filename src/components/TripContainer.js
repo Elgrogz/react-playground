@@ -8,13 +8,16 @@ import TextField from "@mui/material/TextField";
 
 const TripContainer = (props) => {
   const [startDate, setStartDate] = React.useState(null);
+  const [endDate, setEndDate] = React.useState(null);
 
   const handleTripStartDateChange = (date) => {
-    // console.log("trip --------> " + trip);
-    // console.log("date --------> " + date);
     setStartDate(date);
-    // console.log("startdate --------> " + startDate);
     props.handleTripStartDateChange(date);
+  };
+
+  const handleTripEndDateChange = (date) => {
+    setEndDate(date);
+    props.handleTripEndDateChange(date);
   };
 
   let removeTripButton;
@@ -39,18 +42,11 @@ const TripContainer = (props) => {
           <Col xs={2} />
           <Col xs={4}>
             <Form.Group controlId="tripStartDate" className="float-end">
-              {/* <Form.Label className="m-1 d-flex fw-light"></Form.Label> */}
-              {/* <Form.Control
-                data-testid={"trip-start-date-" + props.index}
-                type="date"
-                onChange={props.handleTripStartDateChange}
-              /> */}
               <DatePicker
                 label="Start date of Trip: "
                 value={startDate}
                 data-testid={"trip-start-date-" + props.index}
                 inputFormat="dd/MM/yyyy"
-                // value={props.}
                 onChange={handleTripStartDateChange}
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -58,13 +54,13 @@ const TripContainer = (props) => {
           </Col>
           <Col xs={6}>
             <Form.Group controlId="tripEndDate" className="float-start">
-              <Form.Label className="m-1 d-flex fw-light">
-                End date of Trip:
-              </Form.Label>
-              <Form.Control
-                data-testid={"trip-end-date" + props.index}
-                type="date"
-                onChange={props.handleTripEndDateChange}
+              <DatePicker
+                label="End date of Trip: "
+                value={endDate}
+                data-testid={"trip-end-date-" + props.index}
+                inputFormat="dd/MM/yyyy"
+                onChange={handleTripEndDateChange}
+                renderInput={(params) => <TextField {...params} />}
               />
             </Form.Group>
             <div className="float-start mt-4 ms-1">{removeTripButton}</div>
