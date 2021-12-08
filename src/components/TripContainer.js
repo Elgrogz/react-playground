@@ -36,7 +36,7 @@ const TripContainer = (props) => {
   }
 
   return (
-    <Form>
+    <Form className="my-3">
       <Container>
         <Row>
           <Col xs={2} />

@@ -17,12 +17,10 @@ const DatePeriodContainer = (props) => {
   return (
     <Row className="mt=1 mb-3">
       <Form className="float-end me-4 ">
-        <Form.Group className="mb-3">
-          <Form.Label className="d-flex fw-light">
-            End of Period Date:
-          </Form.Label>
+        <Form.Group className="my-3">
           <DatePicker
-            label="Default is today's date"
+            className="mx-3"
+            label="End of Period Date: "
             data-testid="period-end-date"
             inputFormat="dd/MM/yyyy"
             value={date}
