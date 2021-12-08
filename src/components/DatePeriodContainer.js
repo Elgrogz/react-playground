@@ -3,20 +3,29 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { format } from "date-fns";
+import DatePicker from "@mui/lab/DatePicker";
+import TextField from "@mui/material/TextField";
 
 const DatePeriodContainer = (props) => {
+  const [date, setDate] = React.useState(props.periodEndDate);
+
+  const handleDateChange = (date) => {
+    setDate(date);
+    props.handleDatePeriodChange(date);
+  };
+
   return (
     <Row className="mt=1 mb-3">
-      <Form className="float-end me-4 justify-content-center">
-        <Form.Group className="mb-3">
-          <Form.Label>
-            End of Period Date: (Default is today's date):
-          </Form.Label>
-          <Form.Control
-            type="date"
-            value={format(props.periodEndDate, "yyyy-MM-dd")}
-            onChange={props.clickHandler}
+      <Form className="float-end me-4 ">
+        <Form.Group className="my-3">
+          <DatePicker
+            className="mx-3"
+            label="End of Period Date: "
+            data-testid="period-end-date"
+            inputFormat="dd/MM/yyyy"
+            value={date}
+            onChange={handleDateChange}
+            renderInput={(params) => <TextField {...params} />}
           />
         </Form.Group>
       </Form>
@@ -26,17 +35,13 @@ const DatePeriodContainer = (props) => {
           <p className="mt-2">
             End of 180 day travel period:{" "}
             <b data-testid="period-end-date-label">
-              {props.periodEndDate
-                ? props.periodEndDate.toLocaleDateString()
-                : "Not yet selected"}{" "}
+              {props.periodEndDate.toLocaleDateString()}
             </b>
           </p>
           <p>
             Start of 180 day travel period:{" "}
             <b data-testid="period-start-date-label">
-              {props.periodStartDate
-                ? props.periodStartDate.toLocaleDateString()
-                : "Not yet selected"}
+              {props.periodStartDate.toLocaleDateString()}
             </b>
           </p>
         </Col>

@@ -7,7 +7,9 @@ const ResultContainer = (props) => {
     <Row>
       <Col />
       <Col xs={10} className="container-box">
-        <h1>Days spent in the EU: {props.totalDaysInTheEu}</h1>
+        <h1 data-testid="result-container">
+          Days spent in the EU: {props.totalDaysInTheEu}
+        </h1>
         {props.dateWarning}
       </Col>
       <Col />

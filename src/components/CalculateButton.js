@@ -13,6 +13,7 @@ const CalculateButton = (props) => {
           variant="primary"
           size="lg"
           type="submit"
+          data-test-id="calculate-button"
           onClick={props.handleCalculation}
         >
           Can I be in the EU?

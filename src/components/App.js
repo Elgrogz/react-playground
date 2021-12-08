@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   addDays,
   isAfter,
   isBefore,
   isEqual,
-  parseISO,
   differenceInDays,
   startOfDay,
+  getUnixTime,
 } from "date-fns";
 
 import Container from "react-bootstrap/Container";
@@ -18,7 +18,7 @@ import ResultContainer from "./ResultContainer";
 import Footer from "./Footer";
 
 const blankTripData = {
-  id: startOfDay(Date.now()),
+  id: getUnixTime(startOfDay(Date.now())),
   startDate: null,
   endDate: null,
 };
@@ -33,29 +33,33 @@ const App = () => {
   const [trips, setTrips] = useState([blankTripData]);
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
-  const handleDatePeriodChange = (event) => {
-    const date = new Date(event.target.value);
+  useEffect(() => {
+    // console.log("period date --------> " + endOfPeriodDate);
+  });
+
+  const handleDatePeriodChange = (newDate) => {
+    const date = new Date(newDate);
     setEndOfPeriodDate(date);
     setStartOfPeriodDate(addDays(date, -179));
   };
 
-  const handleTripStartDateChange = (trip, event) => {
+  const handleTripStartDateChange = (trip, date) => {
     const indexToUpdate = trips.indexOf(trip);
     let tempTrips = [...trips];
     const tempTrip = {
       ...trips[indexToUpdate],
-      startDate: parseISO(event.target.value),
+      startDate: startOfDay(date),
     };
     tempTrips[indexToUpdate] = tempTrip;
     setTrips(tempTrips);
   };
 
-  const handleTripEndDateChange = (trip, event) => {
+  const handleTripEndDateChange = (trip, date) => {
     const indexToUpdate = trips.indexOf(trip);
     let tempTrips = [...trips];
     const tempTrip = {
       ...trips[indexToUpdate],
-      endDate: parseISO(event.target.value),
+      endDate: startOfDay(date),
     };
     tempTrips[indexToUpdate] = tempTrip;
     setTrips(tempTrips);
