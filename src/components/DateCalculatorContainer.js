@@ -1,7 +1,5 @@
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-
 import React from "react";
+
 import DatePeriodContainer from "./DatePeriodContainer";
 import TripContainer from "./TripContainer";
 import AddNewTripButton from "./AddNewTripButton";
@@ -12,7 +10,17 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 const DateCalculatorContainer = (props) => {
   return (
-    <Container className="container-box">
+    <Container
+      sx={{
+        bgcolor: "#c8e3d4",
+        boxShadow: 1,
+        border: 3,
+        borderRadius: 10,
+        borderColor: "#87aaaa",
+        p: 5,
+        width: 500,
+      }}
+    >
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePeriodContainer
           periodEndDate={props.endOfPeriodDate}

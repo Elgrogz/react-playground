@@ -1,26 +1,22 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
 
 const CalculateButton = (props) => {
   return (
-    <Row>
-      <Col></Col>
-      <Col xs={10}>
-        <Button
-          className="border submit-button my-3"
-          variant="primary"
-          size="lg"
-          type="submit"
-          data-test-id="calculate-button"
-          onClick={props.handleCalculation}
-        >
-          Can I be in the EU?
-        </Button>
-      </Col>
-      <Col></Col>
-    </Row>
+    <Container>
+      <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        type="submit"
+        data-test-id="calculate-button"
+        onClick={props.handleCalculation}
+      >
+        Can I be in the EU?
+      </Button>
+    </Container>
   );
 };
 
