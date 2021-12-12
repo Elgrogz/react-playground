@@ -9,7 +9,9 @@ import {
   getUnixTime,
 } from "date-fns";
 
-import Container from "react-bootstrap/Container";
+// import Container from "react-bootstrap/Container";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 
 import Header from "./Header";
 import DateCalculatorContainer from "./DateCalculatorContainer";
@@ -131,9 +133,12 @@ const App = () => {
       ));
 
   return (
-    <div>
+    <Box>
       <Header />
-      <Container id="app" className="center">
+      <Container
+        id="app"
+        // className="center"
+      >
         <DateCalculatorContainer
           endOfPeriodDate={endOfPeriodDate}
           startOfPeriodDate={startOfPeriodDate}
@@ -151,7 +156,7 @@ const App = () => {
         />
       </Container>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

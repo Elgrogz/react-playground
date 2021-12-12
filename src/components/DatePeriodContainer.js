@@ -5,6 +5,8 @@ import Col from "react-bootstrap/Col";
 
 import DatePicker from "@mui/lab/DatePicker";
 import TextField from "@mui/material/TextField";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 
 const DatePeriodContainer = (props) => {
   const [date, setDate] = React.useState(props.periodEndDate);
@@ -15,23 +17,24 @@ const DatePeriodContainer = (props) => {
   };
 
   return (
-    <Row className="mt=1 mb-3">
-      <Form className="float-end me-4 ">
-        <Form.Group className="my-3">
-          <DatePicker
-            className="mx-3"
-            label="End of Period Date: "
-            data-testid="period-end-date"
-            inputFormat="dd/MM/yyyy"
-            value={date}
-            onChange={handleDateChange}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </Form.Group>
-      </Form>
-      <Row>
-        <Col />
-        <Col xs={6} className="date-box">
+    <Container>
+      <Grid container justifyContent="center">
+        <Grid item>
+          <Form className="me-4">
+            <Form.Group className="my-3">
+              <DatePicker
+                className="mx-3"
+                label="End of Period Date: "
+                data-testid="period-end-date"
+                inputFormat="dd/MM/yyyy"
+                value={date}
+                onChange={handleDateChange}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </Form.Group>
+          </Form>
+        </Grid>
+        <Grid item className="date-box">
           <p className="mt-2">
             End of 180 day travel period:{" "}
             <b data-testid="period-end-date-label">
@@ -44,10 +47,9 @@ const DatePeriodContainer = (props) => {
               {props.periodStartDate.toLocaleDateString()}
             </b>
           </p>
-        </Col>
-        <Col />
-      </Row>
-    </Row>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 

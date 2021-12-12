@@ -1,17 +1,21 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
+
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 
 const AddNewTripButton = (props) => {
   return (
-    <Button
-      className="my-2"
-      variant="success"
-      type="submit"
-      data-testid="add-new-trip-button"
-      onClick={props.addTrip}
-    >
-      Add New Trip
-    </Button>
+    <Container>
+      <Button
+        className="my-2"
+        color="success"
+        variant="contained"
+        data-testid="add-new-trip-button"
+        onClick={props.addTrip}
+      >
+        Add New Trip
+      </Button>
+    </Container>
   );
 };
 
