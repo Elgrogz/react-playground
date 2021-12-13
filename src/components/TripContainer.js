@@ -1,12 +1,12 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
 
-import Button from "@mui/material/Button";
-import DeleteIcon from "@mui/icons-material/Delete";
-
+import Container from "@mui/material/Container";
+import FormGroup from "@mui/material/FormGroup";
+import Grid from "@mui/material/Grid";
 import DatePicker from "@mui/lab/DatePicker";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const TripContainer = (props) => {
   const [startDate, setStartDate] = React.useState(null);
@@ -28,50 +28,48 @@ const TripContainer = (props) => {
       <Button
         variant="contained"
         color="error"
-        size="small"
+        size="medium"
         startIcon={<DeleteIcon />}
         onClick={props.handleTripRemove}
         data-testid={"trip-remove-" + props.index}
         rounded
-      >
-        Remove
-      </Button>
+      ></Button>
     );
   }
 
   return (
-    <Form className="my-3">
-      <Container>
-        <Row>
-          <Col xs={2} />
-          <Col xs={4}>
-            <Form.Group controlId="tripStartDate" className="float-end">
-              <DatePicker
-                label="Start date of Trip: "
-                value={startDate}
-                data-testid={"trip-start-date-" + props.index}
-                inputFormat="dd/MM/yyyy"
-                onChange={handleTripStartDateChange}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </Form.Group>
-          </Col>
-          <Col xs={6}>
-            <Form.Group controlId="tripEndDate" className="float-start">
-              <DatePicker
-                label="End date of Trip: "
-                value={endDate}
-                data-testid={"trip-end-date-" + props.index}
-                inputFormat="dd/MM/yyyy"
-                onChange={handleTripEndDateChange}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </Form.Group>
-            <div className="float-start mt-4 ms-1">{removeTripButton}</div>
-          </Col>
-        </Row>
-      </Container>
-    </Form>
+    <Container sx={{ my: 1 }}>
+      <FormGroup>
+        <Grid container justifyContent="center">
+          <Grid item xs={1} />
+          <Grid item xs={5}>
+            <DatePicker
+              controlId="tripStartDate"
+              label="Start date of Trip: "
+              value={startDate}
+              data-testid={"trip-start-date-" + props.index}
+              inputFormat="dd/MM/yyyy"
+              onChange={handleTripStartDateChange}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </Grid>
+          <Grid item xs={5}>
+            <DatePicker
+              controlId="tripEndDate"
+              label="End date of Trip: "
+              value={endDate}
+              data-testid={"trip-end-date-" + props.index}
+              inputFormat="dd/MM/yyyy"
+              onChange={handleTripEndDateChange}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </Grid>
+          <Grid item xs={1}>
+            {removeTripButton}
+          </Grid>
+        </Grid>
+      </FormGroup>
+    </Container>
   );
 };
 

@@ -1,12 +1,12 @@
 import React from "react";
 
+import Container from "@mui/material/Container";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+
 import DatePeriodContainer from "./DatePeriodContainer";
 import TripContainer from "./TripContainer";
 import AddNewTripButton from "./AddNewTripButton";
-
-import Container from "@mui/material/Container";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
 const DateCalculatorContainer = (props) => {
   return (
@@ -18,9 +18,10 @@ const DateCalculatorContainer = (props) => {
         borderRadius: 10,
         borderColor: "#87aaaa",
         p: 5,
-        width: 500,
+        width: 750,
       }}
     >
+      {/* <Grid container justifyContent="center"> */}
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePeriodContainer
           periodEndDate={props.endOfPeriodDate}
@@ -46,6 +47,7 @@ const DateCalculatorContainer = (props) => {
           ))}
         </Container>
       </LocalizationProvider>
+      {/* </Grid> */}
     </Container>
   );
 };
