@@ -21,7 +21,6 @@ const DateCalculatorContainer = (props) => {
         width: 750,
       }}
     >
-      {/* <Grid container justifyContent="center"> */}
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePeriodContainer
           periodEndDate={props.endOfPeriodDate}
@@ -47,7 +46,6 @@ const DateCalculatorContainer = (props) => {
           ))}
         </Container>
       </LocalizationProvider>
-      {/* </Grid> */}
     </Container>
   );
 };

@@ -9,7 +9,7 @@ import {
   getUnixTime,
 } from "date-fns";
 
-// import Container from "react-bootstrap/Container";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
@@ -26,6 +26,8 @@ const blankTripData = {
 };
 
 const App = () => {
+  const theme = createTheme();
+
   const todaysDate = startOfDay(new Date());
 
   const [endOfPeriodDate, setEndOfPeriodDate] = useState(todaysDate);
@@ -133,30 +135,29 @@ const App = () => {
       ));
 
   return (
-    <Box>
-      <Header />
-      <Container
-        id="app"
-        // className="center"
-      >
-        <DateCalculatorContainer
-          endOfPeriodDate={endOfPeriodDate}
-          startOfPeriodDate={startOfPeriodDate}
-          handleDatePeriodChange={handleDatePeriodChange}
-          trips={trips}
-          addTrip={addTrip}
-          removeTrip={removeTrip}
-          handleTripStartDateChange={handleTripStartDateChange}
-          handleTripEndDateChange={handleTripEndDateChange}
-        />
-        <CalculateButton handleCalculation={calculation} />
-        <ResultContainer
-          totalDaysInTheEu={totalDaysInTheEu}
-          dateWarning={dateWarning}
-        />
-      </Container>
-      <Footer />
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box>
+        <Header />
+        <Container id="app">
+          <DateCalculatorContainer
+            endOfPeriodDate={endOfPeriodDate}
+            startOfPeriodDate={startOfPeriodDate}
+            handleDatePeriodChange={handleDatePeriodChange}
+            trips={trips}
+            addTrip={addTrip}
+            removeTrip={removeTrip}
+            handleTripStartDateChange={handleTripStartDateChange}
+            handleTripEndDateChange={handleTripEndDateChange}
+          />
+          <CalculateButton handleCalculation={calculation} />
+          <ResultContainer
+            totalDaysInTheEu={totalDaysInTheEu}
+            dateWarning={dateWarning}
+          />
+        </Container>
+        <Footer />
+      </Box>
+    </ThemeProvider>
   );
 };
 
