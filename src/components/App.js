@@ -19,14 +19,17 @@ import CalculateButton from "./CalculateButton";
 import ResultContainer from "./ResultContainer";
 import Footer from "./Footer";
 
-const blankTripData = {
-  id: getUnixTime(startOfDay(Date.now())),
-  startDate: null,
-  endDate: null,
-};
-
 const App = () => {
   const theme = createTheme();
+
+  // const [tripCount, setTripCount] = useState(1);
+  const countRef = React.useRef(1);
+
+  const blankTripData = {
+    id: getUnixTime(startOfDay(Date.now())) + countRef.current,
+    startDate: null,
+    endDate: null,
+  };
 
   const todaysDate = startOfDay(new Date());
 
@@ -38,8 +41,12 @@ const App = () => {
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
   useEffect(() => {
-    // console.log("period date --------> " + endOfPeriodDate);
-  });
+    console.dir("useEffect ---- before trip count: " + countRef.current);
+    console.dir("useEffect ---- before trip count: " + blankTripData.id);
+    countRef.current += 1;
+    console.dir("useEffect ---- after trip count: " + countRef.current);
+    console.dir("useEffect ---- after trip count: " + blankTripData.id);
+  }, [trips]);
 
   const handleDatePeriodChange = (newDate) => {
     const date = new Date(newDate);
@@ -71,6 +78,18 @@ const App = () => {
 
   const addTrip = (event) => {
     event.preventDefault();
+
+    const blankTripData = {
+      id: getUnixTime(startOfDay(Date.now())) + countRef.current,
+      startDate: null,
+      endDate: null,
+    };
+    // console.log("tripcount before: " + countRef.current);
+    // setTripCount((previousTripCount) => previousTripCount + 1);
+    // countRef.current += 1;
+    // console.log("tripcount after: " + countRef.current);
+    // console.log("blank trip data: " + blankTripData.id);
+
     let tempTrips = [...trips];
     tempTrips.push(blankTripData);
     setTrips(tempTrips);
