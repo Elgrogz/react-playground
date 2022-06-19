@@ -16,7 +16,7 @@ const Footer = () => (
       </Grid>
       <Divider orientation="vertical" flexItem />
       <Grid item xs>
-        <h5>Links</h5>
+        <h5 className="text-3xl font-bold underline">Lixcsfnks</h5>
         <ul>
           <li>
             <a href="https://github.com/Elgrogz/single-page-eu-travel-calculator">
