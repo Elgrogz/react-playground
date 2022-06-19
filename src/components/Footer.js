@@ -1,22 +1,18 @@
 import React from "react";
 
-import Grid from "@mui/material/Grid";
-import Divider from "@mui/material/Divider";
-
 const Footer = () => (
-  <footer className="footer">
-    <Grid container>
-      <Grid item xs>
-        <h5>Disclaimer</h5>
+  <footer className="bg-blue-500 mt-4 py-4">
+    <div className="grid grid-cols-2 text-center gap-4">
+      <div>
+        <div className="text-2xl">Disclaimer</div>
         <p>
           This app is for purely informational purposes... and also for helping
           me learn React + CSS :) Please verify with an official source for up
           to date rules on traveling to and within the Schengen area
         </p>
-      </Grid>
-      <Divider orientation="vertical" flexItem />
-      <Grid item xs>
-        <h5 className="text-3xl font-bold underline">Lixcsfnks</h5>
+      </div>
+      <div>
+        <div className="text-2xl">Links</div>
         <ul>
           <li>
             <a href="https://github.com/Elgrogz/single-page-eu-travel-calculator">
@@ -29,9 +25,9 @@ const Footer = () => (
             </a>
           </li>
         </ul>
-      </Grid>
-    </Grid>
-    <div className="text-center">
+      </div>
+    </div>
+    <div className="text-center pt-4">
       © 2021 Copyright: <a href="https://grogz.blog">Gregor Gilchrist</a>
     </div>
   </footer>

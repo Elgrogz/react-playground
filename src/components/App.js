@@ -155,7 +155,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box>
+      <Box className="bg-blue-400">
         <Header />
         <Container id="app">
           <DateCalculatorContainer
