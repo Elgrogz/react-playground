@@ -1,22 +1,17 @@
 import React from "react";
 
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-
 const CalculateButton = (props) => {
   return (
-    <Container>
-      <Button
-        variant="contained"
-        color="primary"
-        size="large"
+    <div className="grid place-items-center">
+      <button
         type="submit"
+        className="bg-red-300 hover:bg-red-400 p-4 m-4 font-bold border-4 border-red-500 rounded-xl "
         data-test-id="calculate-button"
         onClick={props.handleCalculation}
       >
         Can I be in the EU?
-      </Button>
-    </Container>
+      </button>
+    </div>
   );
 };
 

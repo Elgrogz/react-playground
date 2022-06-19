@@ -18,7 +18,7 @@ const DateCalculatorContainer = (props) => {
         borderRadius: 10,
         borderColor: "#87aaaa",
         p: 5,
-        width: 750,
+        width: 1000,
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDateFns}>

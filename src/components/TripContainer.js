@@ -1,12 +1,7 @@
 import React from "react";
 
-import Container from "@mui/material/Container";
-import FormGroup from "@mui/material/FormGroup";
-import Grid from "@mui/material/Grid";
 import DatePicker from "@mui/lab/DatePicker";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 const TripContainer = (props) => {
   const [startDate, setStartDate] = React.useState(null);
@@ -25,51 +20,45 @@ const TripContainer = (props) => {
   let removeTripButton;
   if (!props.isFirstElement) {
     removeTripButton = (
-      <Button
-        variant="contained"
-        color="error"
-        size="medium"
-        startIcon={<DeleteIcon />}
+      <button
+        type="submit"
+        className="bg-red-300 hover:bg-red-400 p-1 m-2 font-bold border-4 border-red-500 rounded-xl"
+        // startIcon={<DeleteIcon />}
         onClick={props.handleTripRemove}
         data-testid={"trip-remove-" + props.index}
-        rounded
-      ></Button>
+      >
+        Remove
+      </button>
     );
   }
 
   return (
-    <Container sx={{ my: 1 }}>
-      <FormGroup>
-        <Grid container justifyContent="center">
-          <Grid item xs={1} />
-          <Grid item xs={5}>
-            <DatePicker
-              controlId="tripStartDate"
-              label="Start date of Trip: "
-              value={startDate}
-              data-testid={"trip-start-date-" + props.index}
-              inputFormat="dd/MM/yyyy"
-              onChange={handleTripStartDateChange}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </Grid>
-          <Grid item xs={5}>
-            <DatePicker
-              controlId="tripEndDate"
-              label="End date of Trip: "
-              value={endDate}
-              data-testid={"trip-end-date-" + props.index}
-              inputFormat="dd/MM/yyyy"
-              onChange={handleTripEndDateChange}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </Grid>
-          <Grid item xs={1}>
-            {removeTripButton}
-          </Grid>
-        </Grid>
-      </FormGroup>
-    </Container>
+    <div className="grid grid-cols-6 place-items-center">
+      <div className="col-span-1" />
+      <div className="col-span-2">
+        <DatePicker
+          controlId="tripStartDate"
+          label="Start date of Trip: "
+          value={startDate}
+          data-testid={"trip-start-date-" + props.index}
+          inputFormat="dd/MM/yyyy"
+          onChange={handleTripStartDateChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </div>
+      <div className="col-span-2">
+        <DatePicker
+          controlId="tripEndDate"
+          label="End date of Trip: "
+          value={endDate}
+          data-testid={"trip-end-date-" + props.index}
+          inputFormat="dd/MM/yyyy"
+          onChange={handleTripEndDateChange}
+          renderInput={(params) => <TextField {...params} />}
+        />
+      </div>
+      <div className="col-span-1">{removeTripButton}</div>
+    </div>
   );
 };
 

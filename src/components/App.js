@@ -9,10 +9,6 @@ import {
   getUnixTime,
 } from "date-fns";
 
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-
 import Header from "./Header";
 import DateCalculatorContainer from "./DateCalculatorContainer";
 import CalculateButton from "./CalculateButton";
@@ -20,9 +16,6 @@ import ResultContainer from "./ResultContainer";
 import Footer from "./Footer";
 
 const App = () => {
-  const theme = createTheme();
-
-  // const [tripCount, setTripCount] = useState(1);
   const countRef = React.useRef(1);
 
   const blankTripData = {
@@ -84,11 +77,6 @@ const App = () => {
       startDate: null,
       endDate: null,
     };
-    // console.log("tripcount before: " + countRef.current);
-    // setTripCount((previousTripCount) => previousTripCount + 1);
-    // countRef.current += 1;
-    // console.log("tripcount after: " + countRef.current);
-    // console.log("blank trip data: " + blankTripData.id);
 
     let tempTrips = [...trips];
     tempTrips.push(blankTripData);
@@ -154,29 +142,30 @@ const App = () => {
       ));
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box className="bg-blue-400">
-        <Header />
-        <Container id="app">
-          <DateCalculatorContainer
-            endOfPeriodDate={endOfPeriodDate}
-            startOfPeriodDate={startOfPeriodDate}
-            handleDatePeriodChange={handleDatePeriodChange}
-            trips={trips}
-            addTrip={addTrip}
-            removeTrip={removeTrip}
-            handleTripStartDateChange={handleTripStartDateChange}
-            handleTripEndDateChange={handleTripEndDateChange}
-          />
-          <CalculateButton handleCalculation={calculation} />
-          <ResultContainer
-            totalDaysInTheEu={totalDaysInTheEu}
-            dateWarning={dateWarning}
-          />
-        </Container>
-        <Footer />
-      </Box>
-    </ThemeProvider>
+    <div className="bg-blue-400">
+      <Header />
+      <div id="app">
+        <DateCalculatorContainer
+          endOfPeriodDate={endOfPeriodDate}
+          startOfPeriodDate={startOfPeriodDate}
+          handleDatePeriodChange={handleDatePeriodChange}
+          trips={trips}
+          addTrip={addTrip}
+          removeTrip={removeTrip}
+          handleTripStartDateChange={handleTripStartDateChange}
+          handleTripEndDateChange={handleTripEndDateChange}
+        />
+        <CalculateButton
+          className="justify-center"
+          handleCalculation={calculation}
+        />
+        <ResultContainer
+          totalDaysInTheEu={totalDaysInTheEu}
+          dateWarning={dateWarning}
+        />
+      </div>
+      <Footer />
+    </div>
   );
 };
 

@@ -1,24 +1,18 @@
 import React from "react";
 
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-
 const AddNewTripButton = (props) => {
   return (
-    <Container>
-      <Grid container justifyContent="center">
-        <Button
-          className="my-2"
-          color="success"
-          variant="contained"
-          data-testid="add-new-trip-button"
-          onClick={props.addTrip}
-        >
-          Add New Trip
-        </Button>
-      </Grid>
-    </Container>
+    <div className="flex justify-center">
+      <button
+        type="submit"
+        className="bg-green-300 hover:bg-green-400 p-2 m-2 font-bold border-4 border-green-500 rounded-xl "
+        data-test-id="calculate-button"
+        data-testid="add-new-trip-button"
+        onClick={props.addTrip}
+      >
+        Add New Trip
+      </button>
+    </div>
   );
 };
 
