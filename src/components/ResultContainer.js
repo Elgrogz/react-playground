@@ -1,19 +1,15 @@
 import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 const ResultContainer = (props) => {
   return (
-    <Row>
-      <Col />
-      <Col xs={10} className="container-box">
-        <h1 data-testid="result-container">
+    <div className="flex justify-center">
+      <div className="bg-green-200 w-96 place-content-center p-4 m-2 font-bold border-4 border-green-400 rounded-xl">
+        <div className="text-1xl" data-testid="result-container">
           Days spent in the EU: {props.totalDaysInTheEu}
-        </h1>
+        </div>
         {props.dateWarning}
-      </Col>
-      <Col />
-    </Row>
+      </div>
+    </div>
   );
 };
 

@@ -1,42 +1,35 @@
 import React from "react";
 
 const Footer = () => (
-  <footer className="page-footer footer font-small blue mt-5 pt-4 header-footer">
-    <div className="container-fluid text-center text-md-left">
-      <div className="row">
-        <div className="col-md-6 mt-md-0 mt-3">
-          <h5 className="text-uppercase">Disclaimer</h5>
-          <p>
-            This app is for purely informational purposes... and also for
-            helping me learn React + CSS :) Please verify with an official
-            source for up to date rules on traveling to and within the Schengen
-            area
-          </p>
-        </div>
-
-        <hr className="clearfix w-100 d-md-none pb-0" />
-
-        <div className="col-md-6 mb-md-0 mb-3">
-          <h5 className="text-uppercase">Links</h5>
-          <ul className="list-unstyled">
-            <li>
-              <a href="https://github.com/Elgrogz/single-page-eu-travel-calculator">
-                Code
-              </a>
-            </li>
-            <li>
-              <a href="https://ec.europa.eu/home-affairs/policies/schengen-borders-and-visa/visa-policy/entry-and-stay-schengen-area_en">
-                More info about travel in the Schengen Area
-              </a>
-            </li>
-          </ul>
-        </div>
+  <footer className="bg-blue-500 mt-20 pt-4 py-8 absolute bottom-0">
+    <div className="grid grid-cols-2 text-center gap-4 divide-x-4 divide-green-400">
+      <div>
+        <div className="text-2xl">Disclaimer</div>
+        <p>
+          This app is for purely informational purposes. Please verify with an
+          official source for up to date rules on traveling to and within the
+          Schengen area
+        </p>
+      </div>
+      <div>
+        <div className="text-2xl">Links</div>
+        <ul>
+          <li>
+            <a href="https://github.com/Elgrogz/single-page-eu-travel-calculator">
+              Code
+            </a>
+          </li>
+          <li>
+            <a href="https://ec.europa.eu/home-affairs/policies/schengen-borders-and-visa/visa-policy/entry-and-stay-schengen-area_en">
+              More info about travel in the Schengen Area
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-
-    <div className="footer-copyright text-center py-3">
+    {/* <div className="text-center pt-4">
       © 2021 Copyright: <a href="https://grogz.blog">Gregor Gilchrist</a>
-    </div>
+    </div> */}
   </footer>
 );
 

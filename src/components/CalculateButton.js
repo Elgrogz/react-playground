@@ -1,26 +1,17 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 
 const CalculateButton = (props) => {
   return (
-    <Row>
-      <Col></Col>
-      <Col xs={10}>
-        <Button
-          className="border submit-button my-3"
-          variant="primary"
-          size="lg"
-          type="submit"
-          data-test-id="calculate-button"
-          onClick={props.handleCalculation}
-        >
-          Can I be in the EU?
-        </Button>
-      </Col>
-      <Col></Col>
-    </Row>
+    <div className="grid place-items-center">
+      <button
+        type="submit"
+        className="bg-red-300 hover:bg-red-400 p-4 m-2 font-bold border-4 border-red-500 rounded-xl"
+        data-test-id="calculate-button"
+        onClick={props.handleCalculation}
+      >
+        Can I be in the EU?
+      </button>
+    </div>
   );
 };
 

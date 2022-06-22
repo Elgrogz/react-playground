@@ -9,21 +9,21 @@ import {
   getUnixTime,
 } from "date-fns";
 
-import Container from "react-bootstrap/Container";
-
 import Header from "./Header";
 import DateCalculatorContainer from "./DateCalculatorContainer";
 import CalculateButton from "./CalculateButton";
 import ResultContainer from "./ResultContainer";
 import Footer from "./Footer";
 
-const blankTripData = {
-  id: getUnixTime(startOfDay(Date.now())),
-  startDate: null,
-  endDate: null,
-};
-
 const App = () => {
+  const countRef = React.useRef(1);
+
+  const blankTripData = {
+    id: getUnixTime(startOfDay(Date.now())) + countRef.current,
+    startDate: null,
+    endDate: null,
+  };
+
   const todaysDate = startOfDay(new Date());
 
   const [endOfPeriodDate, setEndOfPeriodDate] = useState(todaysDate);
@@ -34,8 +34,8 @@ const App = () => {
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
   useEffect(() => {
-    // console.log("period date --------> " + endOfPeriodDate);
-  });
+    countRef.current += 1;
+  }, [trips]);
 
   const handleDatePeriodChange = (newDate) => {
     const date = new Date(newDate);
@@ -67,6 +67,13 @@ const App = () => {
 
   const addTrip = (event) => {
     event.preventDefault();
+
+    const blankTripData = {
+      id: getUnixTime(startOfDay(Date.now())) + countRef.current,
+      startDate: null,
+      endDate: null,
+    };
+
     let tempTrips = [...trips];
     tempTrips.push(blankTripData);
     setTrips(tempTrips);
@@ -133,7 +140,7 @@ const App = () => {
   return (
     <div>
       <Header />
-      <Container id="app" className="center">
+      <div id="app">
         <DateCalculatorContainer
           endOfPeriodDate={endOfPeriodDate}
           startOfPeriodDate={startOfPeriodDate}
@@ -144,12 +151,15 @@ const App = () => {
           handleTripStartDateChange={handleTripStartDateChange}
           handleTripEndDateChange={handleTripEndDateChange}
         />
-        <CalculateButton handleCalculation={calculation} />
+        <CalculateButton
+          className="justify-center"
+          handleCalculation={calculation}
+        />
         <ResultContainer
           totalDaysInTheEu={totalDaysInTheEu}
           dateWarning={dateWarning}
         />
-      </Container>
+      </div>
       <Footer />
     </div>
   );
