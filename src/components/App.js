@@ -34,11 +34,7 @@ const App = () => {
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
   useEffect(() => {
-    console.dir("useEffect ---- before trip count: " + countRef.current);
-    console.dir("useEffect ---- before trip count: " + blankTripData.id);
     countRef.current += 1;
-    console.dir("useEffect ---- after trip count: " + countRef.current);
-    console.dir("useEffect ---- after trip count: " + blankTripData.id);
   }, [trips]);
 
   const handleDatePeriodChange = (newDate) => {
