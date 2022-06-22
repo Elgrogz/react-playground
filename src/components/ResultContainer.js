@@ -1,26 +1,15 @@
 import React from "react";
 
-import Container from "@mui/material/Container";
-
 const ResultContainer = (props) => {
   return (
-    <Container
-      className="container-box"
-      sx={{
-        bgcolor: "#c8e3d4",
-        boxShadow: 1,
-        border: 3,
-        borderRadius: 10,
-        borderColor: "#87aaaa",
-        p: 5,
-        width: 500,
-      }}
-    >
-      <h1 data-testid="result-container">
-        Days spent in the EU: {props.totalDaysInTheEu}
-      </h1>
-      {props.dateWarning}
-    </Container>
+    <div className="flex justify-center">
+      <div className="bg-green-200 w-96 place-content-center p-4 m-4 font-bold border-4 border-green-400 rounded-xl">
+        <div className="text-1xl" data-testid="result-container">
+          Days spent in the EU: {props.totalDaysInTheEu}
+        </div>
+        {props.dateWarning}
+      </div>
+    </div>
   );
 };
 

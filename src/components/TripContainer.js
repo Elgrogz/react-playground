@@ -35,7 +35,7 @@ const TripContainer = (props) => {
   return (
     <div className="grid grid-cols-6 place-items-center">
       <div className="col-span-1" />
-      <div className="col-span-2">
+      <div className="col-span-2 mb-1">
         <DatePicker
           controlId="tripStartDate"
           label="Start date of Trip: "
