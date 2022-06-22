@@ -11,7 +11,7 @@ import AddNewTripButton from "./AddNewTripButton";
 const DateCalculatorContainer = (props) => {
   return (
     <div className="flex justify-center">
-      <div className="bg-green-200 w-1500 place-content-center p-4 m-4 font-bold border-4 border-green-400 rounded-xl">
+      <div className="bg-green-200 w-1500 place-content-center p-4 m-2 font-bold border-4 border-green-400 rounded-xl">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePeriodContainer
             periodEndDate={props.endOfPeriodDate}

@@ -5,7 +5,7 @@ const CalculateButton = (props) => {
     <div className="grid place-items-center">
       <button
         type="submit"
-        className="bg-red-300 hover:bg-red-400 p-4 m-4 font-bold border-4 border-red-500 rounded-xl "
+        className="bg-red-300 hover:bg-red-400 p-4 m-2 font-bold border-4 border-red-500 rounded-xl"
         data-test-id="calculate-button"
         onClick={props.handleCalculation}
       >
