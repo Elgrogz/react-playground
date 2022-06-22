@@ -1,14 +1,14 @@
 import React from "react";
 
 const Footer = () => (
-  <footer className="bg-blue-500 mt-20 py-4 absolute bottom-0">
-    <div className="grid grid-cols-2 text-center gap-4 divide-x-4 divide-slate-200">
+  <footer className="bg-blue-500 mt-20 pt-4 py-8 absolute bottom-0">
+    <div className="grid grid-cols-2 text-center gap-4 divide-x-4 divide-green-400">
       <div>
         <div className="text-2xl">Disclaimer</div>
         <p>
-          This app is for purely informational purposes... and also for helping
-          me learn React + CSS :) Please verify with an official source for up
-          to date rules on traveling to and within the Schengen area
+          This app is for purely informational purposes. Please verify with an
+          official source for up to date rules on traveling to and within the
+          Schengen area
         </p>
       </div>
       <div>
@@ -27,9 +27,9 @@ const Footer = () => (
         </ul>
       </div>
     </div>
-    <div className="text-center pt-4">
+    {/* <div className="text-center pt-4">
       © 2021 Copyright: <a href="https://grogz.blog">Gregor Gilchrist</a>
-    </div>
+    </div> */}
   </footer>
 );
 
