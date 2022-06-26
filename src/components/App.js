@@ -138,7 +138,7 @@ const App = () => {
       ));
 
   return (
-    <div>
+    <div class="min-h-screen bg-blue-400">
       <Header />
       <div id="app">
         <DateCalculatorContainer
