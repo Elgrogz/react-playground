@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   addDays,
   isAfter,
@@ -16,7 +16,7 @@ import ResultContainer from "./ResultContainer";
 import Footer from "./Footer";
 
 const App = () => {
-  const countRef = React.useRef(1);
+  const countRef = useRef(1);
 
   const blankTripData = {
     id: getUnixTime(startOfDay(Date.now())) + countRef.current,
@@ -138,7 +138,7 @@ const App = () => {
       ));
 
   return (
-    <div class="min-h-screen bg-blue-400">
+    <div className="min-h-screen bg-blue-400">
       <Header />
       <div id="app">
         <DateCalculatorContainer

@@ -18,7 +18,7 @@ const DateCalculatorContainer = (props) => {
             handleDatePeriodChange={props.handleDatePeriodChange}
           />
           <AddNewTripButton addTrip={props.addTrip} />
-          <div id="trips-container">
+          <div data-testid="trips-container">
             {props.trips.map((trip, index) => (
               <TripContainer
                 key={trip.id}
