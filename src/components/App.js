@@ -33,9 +33,10 @@ const App = () => {
   const [trips, setTrips] = useState([blankTripData]);
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
-  useEffect(() => {
-    countRef.current += 1;
-  }, [trips]);
+  // probably don't need useEffect for this purpose
+  // useEffect(() => {
+  //   countRef.current += 1;
+  // }, [trips]);
 
   const handleDatePeriodChange = (newDate) => {
     const date = new Date(newDate);
@@ -66,6 +67,7 @@ const App = () => {
   };
 
   const addTrip = (event) => {
+    countRef.current += 1;
     event.preventDefault();
 
     const blankTripData = {

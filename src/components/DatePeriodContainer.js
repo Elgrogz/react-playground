@@ -1,10 +1,10 @@
-import React from "react";
+import { useState } from "react";
 
 import DatePicker from "@mui/lab/DatePicker";
 import TextField from "@mui/material/TextField";
 
 const DatePeriodContainer = (props) => {
-  const [date, setDate] = React.useState(props.periodEndDate);
+  const [date, setDate] = useState(props.periodEndDate);
 
   const handleDateChange = (date) => {
     setDate(date);

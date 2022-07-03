@@ -1,5 +1,3 @@
-import React from "react";
-
 const CalculateButton = (props) => {
   return (
     <div className="grid place-items-center">

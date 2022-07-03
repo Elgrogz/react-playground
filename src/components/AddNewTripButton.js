@@ -1,5 +1,3 @@
-import React from "react";
-
 const AddNewTripButton = (props) => {
   return (
     <div className="flex justify-center">
