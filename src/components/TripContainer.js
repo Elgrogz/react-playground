@@ -1,11 +1,11 @@
-import React from "react";
+import { useState } from "react";
 
 import DatePicker from "@mui/lab/DatePicker";
 import TextField from "@mui/material/TextField";
 
 const TripContainer = (props) => {
-  const [startDate, setStartDate] = React.useState(null);
-  const [endDate, setEndDate] = React.useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const handleTripStartDateChange = (date) => {
     setStartDate(date);
@@ -34,9 +34,11 @@ const TripContainer = (props) => {
 
   return (
     <div className="grid grid-cols-6 place-items-center">
-      <div className="col-start-2 col-span-2 mr-1 mb-1">
+      <div
+        className="col-start-2 col-span-2 mr-1 mb-1"
+        // data-testId="trip-start-date"
+      >
         <DatePicker
-          data-testId="trip-start-date" //remove and use label later
           controlId="tripStartDate"
           label="Start date of Trip: "
           value={startDate}
@@ -48,7 +50,6 @@ const TripContainer = (props) => {
       </div>
       <div className="col-span-2 ml-1 mb-1">
         <DatePicker
-          data-testId="trip-end-date" //remove and use label later
           controlId="tripEndDate"
           label="End date of Trip: "
           value={endDate}
