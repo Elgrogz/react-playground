@@ -45,6 +45,7 @@ it("can add one trip", () => {
 
   const numberOfTrips = screen.getByTestId("trips-container").children.length;
   const removeButton = screen.getAllByText("Remove");
+
   expect(numberOfTrips).toBe(2);
   expect(removeButton.length).toBe(1);
 });

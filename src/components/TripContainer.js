@@ -1,7 +1,8 @@
 import { useState } from "react";
+import DatePicker from "./DatePicker";
 
-import DatePicker from "@mui/lab/DatePicker";
-import TextField from "@mui/material/TextField";
+// import DatePicker from "@mui/lab/DatePicker";
+// import TextField from "@mui/material/TextField";
 
 const TripContainer = (props) => {
   const [startDate, setStartDate] = useState(null);
@@ -38,7 +39,8 @@ const TripContainer = (props) => {
         className="col-start-2 col-span-2 mr-1 mb-1"
         // data-testId="trip-start-date"
       >
-        <DatePicker
+        <DatePicker />
+        {/* <DatePicker
           controlId="tripStartDate"
           label="Start date of Trip: "
           value={startDate}
@@ -46,10 +48,11 @@ const TripContainer = (props) => {
           inputFormat="dd/MM/yyyy"
           onChange={handleTripStartDateChange}
           renderInput={(params) => <TextField {...params} />}
-        />
+        /> */}
       </div>
       <div className="col-span-2 ml-1 mb-1">
-        <DatePicker
+        <DatePicker />
+        {/* <DatePicker
           controlId="tripEndDate"
           label="End date of Trip: "
           value={endDate}
@@ -57,7 +60,7 @@ const TripContainer = (props) => {
           inputFormat="dd/MM/yyyy"
           onChange={handleTripEndDateChange}
           renderInput={(params) => <TextField {...params} />}
-        />
+        /> */}
       </div>
       <div className="col-span-1 -ml-3">{removeTripButton}</div>
     </div>
