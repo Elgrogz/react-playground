@@ -22,7 +22,7 @@ const TripContainer = (props) => {
         type="submit"
         className="bg-red-300 hover:bg-red-400 p-1 m-2 font-bold border-4 border-red-500 rounded-xl"
         onClick={props.handleTripRemove}
-        data-testid={"trip-remove-" + props.index}
+        data-testid={`trip-remove-${props.index}`}
       >
         Remove
       </button>
@@ -35,12 +35,14 @@ const TripContainer = (props) => {
         <DatePicker
           dateValue={startDate}
           handleDateChange={handleTripStartDateChange}
+          dataTestid={`trip-start-datepicker-${props.index}`}
         />
       </div>
       <div className="col-span-2 ml-1 mb-1">
         <DatePicker
           dateValue={endDate}
           handleDateChange={handleTripEndDateChange}
+          dataTestid={`trip-end-datepicker-${props.index}`}
         />
       </div>
       <div className="col-span-1 -ml-3">{removeTripButton}</div>

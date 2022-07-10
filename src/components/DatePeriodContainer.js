@@ -13,7 +13,11 @@ const DatePeriodContainer = (props) => {
   return (
     <div className="grid grid-cols-2 gap-1">
       <div className="flex justify-center">
-        <DatePicker dateValue={date} handleDateChange={handleDateChange} />
+        <DatePicker
+          dateValue={date}
+          handleDateChange={handleDateChange}
+          data-testid="end-of-period-datepicker"
+        />
       </div>
       <div className="date-box">
         <p>

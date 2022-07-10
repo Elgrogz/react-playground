@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import App from "../components/App";
@@ -40,8 +40,10 @@ it("renders calculator page with one trip", () => {
   expect(numberOfTrips).toBe(1);
 });
 
-it("can add one trip", () => {
-  screen.getByText("Add New Trip").click();
+it("can add one trip", async () => {
+  const user = userEvent.setup();
+
+  await user.click(screen.getByText("Add New Trip"));
 
   const numberOfTrips = screen.getByTestId("trips-container").children.length;
   const removeButton = screen.getAllByText("Remove");
@@ -50,10 +52,13 @@ it("can add one trip", () => {
   expect(removeButton.length).toBe(1);
 });
 
-it("can add multiple trips", () => {
-  screen.getByText("Add New Trip").click();
-  screen.getByText("Add New Trip").click();
-  screen.getByText("Add New Trip").click();
+it("can add multiple trips", async () => {
+  const user = userEvent.setup();
+
+  const addNewTripElement = screen.getByText("Add New Trip");
+  await user.click(addNewTripElement);
+  await user.click(addNewTripElement);
+  await user.click(addNewTripElement);
 
   const numberOfTrips = screen.getByTestId("trips-container").children.length;
   const removeButton = screen.getAllByText("Remove");
@@ -69,24 +74,34 @@ it("can add multiple trips", () => {
 //   expect(numberOfTrips).toBe(2);
 // });
 
-it("can remove one trip", () => {
-  screen.getByText("Add New Trip").click();
-  screen.getByText("Add New Trip").click();
+it("can remove one trip", async () => {
+  const user = userEvent.setup();
+
+  const addNewTripElement = screen.getByText("Add New Trip");
+  await user.click(addNewTripElement);
+  await user.click(addNewTripElement);
 
   const lastRemoveButton = screen.getAllByText("Remove").slice(-1)[0];
-  userEvent.click(lastRemoveButton);
+
+  await userEvent.click(lastRemoveButton);
+
   const numberOfTrips = screen.getByTestId("trips-container").children.length;
   expect(numberOfTrips).toBe(2);
 });
 
 it("can calculate the date of 1 trip in the past 90 days", async () => {
-  const startDateInput = screen.getAllByRole("textbox")[1]; // change to screen.getElementByTestId when material UI is replaced
-  const endDateInput = screen.getAllByRole("textbox")[2];
+  // const startDateInput = screen.getByTestId("trip-start-datepicker-0"); // change to screen.getElementByTestId when material UI is replaced
+  // const endDateInput = screen.getByTestId("trip-end-datepicker-0"); // change to screen.getElementByTestId when material UI is replaced
+  const user = userEvent.setup();
 
-  await userEvent.type(startDateInput, "01082021");
-  await userEvent.type(endDateInput, "07082021");
-  screen.getByText("Can I be in the EU?").click();
+  await fireEvent.change(screen.getByTestId("trip-start-datepicker-0"), {
+    target: { value: "2021-08-01" },
+  });
+  await fireEvent.change(screen.getByTestId("trip-end-datepicker-0"), {
+    target: { value: "2021-08-08" },
+  });
+  await user.click(screen.getByText("Can I be in the EU?"));
 
-  // const resultElement = screen.getByText("Days spent in the EU:");
-  // expect(resultElement).toBeInTheDocument();
+  const resultElement = screen.getByText("Days spent in the EU: 8");
+  expect(resultElement).toBeInTheDocument();
 });
