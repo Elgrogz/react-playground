@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   addDays,
   isAfter,
@@ -33,11 +33,6 @@ const App = () => {
   const [trips, setTrips] = useState([blankTripData]);
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
-  // probably don't need useEffect for this purpose
-  // useEffect(() => {
-  //   countRef.current += 1;
-  // }, [trips]);
-
   const handleDatePeriodChange = (newDate) => {
     const date = new Date(newDate);
     setEndOfPeriodDate(date);
@@ -49,7 +44,7 @@ const App = () => {
     let tempTrips = [...trips];
     const tempTrip = {
       ...trips[indexToUpdate],
-      startDate: startOfDay(date),
+      startDate: startOfDay(new Date(date)),
     };
     tempTrips[indexToUpdate] = tempTrip;
     setTrips(tempTrips);
@@ -60,7 +55,7 @@ const App = () => {
     let tempTrips = [...trips];
     const tempTrip = {
       ...trips[indexToUpdate],
-      endDate: startOfDay(date),
+      endDate: startOfDay(new Date(date)),
     };
     tempTrips[indexToUpdate] = tempTrip;
     setTrips(tempTrips);
