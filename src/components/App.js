@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import {
   addDays,
   isAfter,
@@ -16,7 +16,7 @@ import ResultContainer from "./ResultContainer";
 import Footer from "./Footer";
 
 const App = () => {
-  const countRef = React.useRef(1);
+  const countRef = useRef(1);
 
   const blankTripData = {
     id: getUnixTime(startOfDay(Date.now())) + countRef.current,
@@ -33,10 +33,6 @@ const App = () => {
   const [trips, setTrips] = useState([blankTripData]);
   const [totalDaysInTheEu, setTotalDaysInTheEu] = useState(0);
 
-  useEffect(() => {
-    countRef.current += 1;
-  }, [trips]);
-
   const handleDatePeriodChange = (newDate) => {
     const date = new Date(newDate);
     setEndOfPeriodDate(date);
@@ -48,7 +44,7 @@ const App = () => {
     let tempTrips = [...trips];
     const tempTrip = {
       ...trips[indexToUpdate],
-      startDate: startOfDay(date),
+      startDate: startOfDay(new Date(date)),
     };
     tempTrips[indexToUpdate] = tempTrip;
     setTrips(tempTrips);
@@ -59,13 +55,14 @@ const App = () => {
     let tempTrips = [...trips];
     const tempTrip = {
       ...trips[indexToUpdate],
-      endDate: startOfDay(date),
+      endDate: startOfDay(new Date(date)),
     };
     tempTrips[indexToUpdate] = tempTrip;
     setTrips(tempTrips);
   };
 
   const addTrip = (event) => {
+    countRef.current += 1;
     event.preventDefault();
 
     const blankTripData = {
@@ -138,7 +135,7 @@ const App = () => {
       ));
 
   return (
-    <div class="min-h-screen bg-blue-400">
+    <div className="min-h-screen bg-blue-400">
       <Header />
       <div id="app">
         <DateCalculatorContainer

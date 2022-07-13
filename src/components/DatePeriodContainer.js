@@ -1,10 +1,9 @@
-import React from "react";
+import { useState } from "react";
 
-import DatePicker from "@mui/lab/DatePicker";
-import TextField from "@mui/material/TextField";
+import DatePicker from "./DatePicker";
 
 const DatePeriodContainer = (props) => {
-  const [date, setDate] = React.useState(props.periodEndDate);
+  const [date, setDate] = useState(props.periodEndDate);
 
   const handleDateChange = (date) => {
     setDate(date);
@@ -15,13 +14,9 @@ const DatePeriodContainer = (props) => {
     <div className="grid grid-cols-2 gap-1">
       <div className="flex justify-center">
         <DatePicker
-          className="mx-3"
-          label="End of Period Date: "
-          data-testid="period-end-date"
-          inputFormat="dd/MM/yyyy"
-          value={date}
-          onChange={handleDateChange}
-          renderInput={(params) => <TextField {...params} />}
+          dateValue={date}
+          handleDateChange={handleDateChange}
+          data-testid="end-of-period-datepicker"
         />
       </div>
       <div className="date-box">
